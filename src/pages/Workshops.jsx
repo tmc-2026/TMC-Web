@@ -20,6 +20,7 @@ const workshops = [
     mode: "Live Online",
     badge: "Popular",
     color: "from-violet-500 to-fuchsia-500",
+    titleColor: "text-[#7B3FF2]",
   },
   {
     title: "Creative Learning Activities",
@@ -28,6 +29,7 @@ const workshops = [
     mode: "Interactive",
     badge: "New",
     color: "from-orange-500 to-amber-500",
+    titleColor: "text-[#FF8A00]",
   },
   {
     title: "Child Observation Workshop",
@@ -36,6 +38,7 @@ const workshops = [
     mode: "Live Online",
     badge: "Featured",
     color: "from-green-500 to-emerald-500",
+    titleColor: "text-[#52C24E]",
   },
 ];
 
@@ -44,21 +47,29 @@ const categories = [
     title: "Montessori",
     icon: GraduationCap,
     color: "bg-violet-100 text-violet-600",
+    titleColor: "text-[#7B3FF2]",
+    descColor: "text-[#0B55B7]",
   },
   {
     title: "Creative Arts",
     icon: Palette,
     color: "bg-orange-100 text-orange-500",
+    titleColor: "text-[#FF8A00]",
+    descColor: "text-[#52C24E]",
   },
   {
     title: "Child Development",
     icon: Users,
     color: "bg-sky-100 text-sky-600",
+    titleColor: "text-[#0B55B7]",
+    descColor: "text-[#7B3FF2]",
   },
   {
     title: "Teaching Skills",
     icon: BookOpen,
     color: "bg-green-100 text-green-600",
+    titleColor: "text-[#52C24E]",
+    descColor: "text-[#FF8A00]",
   },
 ];
 
@@ -92,13 +103,13 @@ export default function Workshops() {
 
               <Sparkles className="text-orange-500" size={18} />
 
-              <span className="font-semibold text-slate-700">
+              <span className="font-semibold text-[#7B3FF2]">
                 Interactive Montessori Workshops
               </span>
 
             </div>
 
-            <h2 className="mt-8 text-5xl font-black leading-tight">
+            <h2 className="mt-8 text-4xl font-black leading-tight sm:text-5xl">
 
               <span className="text-violet-600">
                 Learn.
@@ -118,12 +129,12 @@ export default function Workshops() {
 
             </h2>
 
-            <p className="mt-8 max-w-xl text-lg leading-8 text-slate-600">
+            <p className="mt-8 max-w-xl text-lg leading-8 font-medium">
 
-              Join our engaging Montessori workshops designed
-              for teachers, assistants, parents and caregivers.
-              Learn through practical demonstrations, live
-              activities and interactive discussions.
+              <span className="text-[#7B3FF2]">Join our engaging Montessori workshops designed </span>
+              <span className="text-[#0B55B7]">for teachers, assistants, parents and caregivers. </span>
+              <span className="text-[#52C24E]">Learn through practical demonstrations, live activities </span>
+              <span className="text-[#FF8A00]">and interactive discussions.</span>
 
             </p>
 
@@ -174,9 +185,11 @@ export default function Workshops() {
 
               </div>
 
-              <h3 className="mt-6 text-3xl font-bold text-slate-900">
+              <h3 className="mt-6 text-3xl font-bold">
 
-                Montessori Classroom Setup
+                <span className="text-[#7B3FF2]">Montessori </span>
+                <span className="text-[#0B55B7]">Classroom </span>
+                <span className="text-[#52C24E]">Setup</span>
 
               </h3>
 
@@ -184,7 +197,7 @@ export default function Workshops() {
 
                 <div className="flex items-center justify-between rounded-2xl bg-orange-50 p-4">
 
-                  <span className="flex items-center gap-2">
+                  <span className="flex items-center gap-2 font-medium text-[#FF8A00]">
 
                     <CalendarDays size={18} />
 
@@ -192,7 +205,7 @@ export default function Workshops() {
 
                   </span>
 
-                  <strong>
+                  <strong className="text-[#7B3FF2]">
 
                     15 July
 
@@ -202,7 +215,7 @@ export default function Workshops() {
 
                 <div className="flex items-center justify-between rounded-2xl bg-sky-50 p-4">
 
-                  <span className="flex items-center gap-2">
+                  <span className="flex items-center gap-2 font-medium text-[#0B55B7]">
 
                     <Clock3 size={18} />
 
@@ -210,7 +223,7 @@ export default function Workshops() {
 
                   </span>
 
-                  <strong>
+                  <strong className="text-[#52C24E]">
 
                     2 Days
 
@@ -220,7 +233,7 @@ export default function Workshops() {
 
                 <div className="flex items-center justify-between rounded-2xl bg-green-50 p-4">
 
-                  <span className="flex items-center gap-2">
+                  <span className="flex items-center gap-2 font-medium text-[#52C24E]">
 
                     <Globe2 size={18} />
 
@@ -228,7 +241,7 @@ export default function Workshops() {
 
                   </span>
 
-                  <strong>
+                  <strong className="text-[#0B55B7]">
 
                     Live Online
 
@@ -238,7 +251,7 @@ export default function Workshops() {
 
                 <div className="flex items-center justify-between rounded-2xl bg-violet-50 p-4">
 
-                  <span className="flex items-center gap-2">
+                  <span className="flex items-center gap-2 font-medium text-[#7B3FF2]">
 
                     <BadgeCheck size={18} />
 
@@ -246,7 +259,7 @@ export default function Workshops() {
 
                   </span>
 
-                  <strong>
+                  <strong className="text-[#FF8A00]">
 
                     Included
 
@@ -268,9 +281,11 @@ export default function Workshops() {
             initial={{ opacity:0,y:40 }}
             whileInView={{ opacity:1,y:0 }}
             viewport={{ once:true }}
-            className="text-center text-4xl font-bold text-slate-900"
+            className="text-center text-3xl font-bold sm:text-4xl"
           >
-            Explore Workshop Categories
+            <span className="text-[#7B3FF2]">Explore </span>
+            <span className="text-[#0B55B7]">Workshop </span>
+            <span className="text-[#52C24E]">Categories</span>
           </motion.h3>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -297,13 +312,13 @@ export default function Workshops() {
 
                   </div>
 
-                  <h4 className="mt-6 text-xl font-bold">
+                  <h4 className={`mt-6 text-xl font-bold ${item.titleColor}`}>
 
                     {item.title}
 
                   </h4>
 
-                  <p className="mt-3 leading-7 text-slate-600">
+                  <p className={`mt-3 leading-7 font-medium ${item.descColor}`}>
 
                     Interactive workshops designed
                     around real classroom experience.
@@ -334,14 +349,17 @@ export default function Workshops() {
               Upcoming Workshops
             </p>
 
-            <h3 className="mt-4 text-4xl font-bold text-slate-900">
-              Learn with our live interactive sessions
+            <h3 className="mt-4 text-3xl font-bold sm:text-4xl">
+              <span className="text-[#7B3FF2]">Learn with our </span>
+              <span className="text-[#0B55B7]">live interactive </span>
+              <span className="text-[#FF8A00]">sessions</span>
             </h3>
 
-            <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 text-slate-600">
-              Every workshop combines practical activities, discussion,
-              demonstrations and live interaction to help you confidently
-              implement Montessori principles.
+            <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 font-medium">
+              <span className="text-[#7B3FF2]">Every workshop combines practical activities, </span>
+              <span className="text-[#0B55B7]">discussion, demonstrations </span>
+              <span className="text-[#52C24E]">and live interaction to help you confidently </span>
+              <span className="text-[#FF8A00]">implement Montessori principles.</span>
             </p>
 
           </motion.div>
@@ -375,7 +393,7 @@ export default function Workshops() {
 
                   </span>
 
-                  <h4 className="mt-6 text-2xl font-bold text-slate-900">
+                  <h4 className={`mt-6 text-2xl font-bold ${item.titleColor}`}>
 
                     {item.title}
 
@@ -385,13 +403,13 @@ export default function Workshops() {
 
                     <div className="flex items-center justify-between">
 
-                      <span className="text-slate-500">
+                      <span className="text-[#7B3FF2] font-medium">
 
                         Date
 
                       </span>
 
-                      <strong>
+                      <strong className="text-[#0B55B7]">
 
                         {item.date}
 
@@ -401,13 +419,13 @@ export default function Workshops() {
 
                     <div className="flex items-center justify-between">
 
-                      <span className="text-slate-500">
+                      <span className="text-[#FF8A00] font-medium">
 
                         Duration
 
                       </span>
 
-                      <strong>
+                      <strong className="text-[#52C24E]">
 
                         {item.duration}
 
@@ -417,13 +435,13 @@ export default function Workshops() {
 
                     <div className="flex items-center justify-between">
 
-                      <span className="text-slate-500">
+                      <span className="text-[#0B55B7] font-medium">
 
                         Mode
 
                       </span>
 
-                      <strong>
+                      <strong className="text-[#7B3FF2]">
 
                         {item.mode}
 
@@ -433,7 +451,7 @@ export default function Workshops() {
 
                   </div>
 
-                  <button className="mt-10 w-full rounded-full bg-slate-900 py-4 font-semibold text-white transition group-hover:bg-violet-600">
+                  <button className="mt-10 w-full rounded-full bg-violet-600 py-4 font-semibold text-white transition group-hover:bg-[#0B55B7]">
 
                     Register Now
 
@@ -455,7 +473,7 @@ export default function Workshops() {
 
         {/* Why Attend */}
 
-        <div className="mt-28 rounded-[40px] bg-gradient-to-r from-violet-600 via-blue-600 to-green-500 p-12 text-white">
+        <div className="mt-28 rounded-[28px] bg-gradient-to-r from-violet-600 via-blue-600 to-green-500 p-8 text-white sm:rounded-[40px] sm:p-12">
 
           <div className="grid items-center gap-12 lg:grid-cols-2">
 
@@ -465,7 +483,7 @@ export default function Workshops() {
                 initial={{ opacity: 0, x: -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                className="text-4xl font-bold"
+                className="text-3xl font-bold sm:text-4xl"
               >
 
                 Why Attend Our Workshops?
@@ -535,16 +553,19 @@ export default function Workshops() {
           className="mt-28 text-center"
         >
 
-          <h2 className="text-5xl font-bold text-slate-900">
+          <h2 className="text-3xl font-bold sm:text-4xl md:text-5xl">
 
-            Ready to Join Our Next Workshop?
+            <span className="text-[#7B3FF2]">Ready to Join </span>
+            <span className="text-[#0B55B7]">Our Next </span>
+            <span className="text-[#52C24E]">Workshop?</span>
 
           </h2>
 
-          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 text-slate-600">
+          <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 font-medium">
 
-            Reserve your seat today and become part of a growing
-            community of Montessori educators.
+            <span className="text-[#7B3FF2]">Reserve your seat today </span>
+            <span className="text-[#0B55B7]">and become part of a growing community </span>
+            <span className="text-[#FF8A00]">of Montessori educators.</span>
 
           </p>
 
