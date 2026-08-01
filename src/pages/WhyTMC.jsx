@@ -17,6 +17,8 @@ const features = [
       "Learn directly from passionate educators with years of Montessori classroom experience.",
     bg: "bg-violet-100",
     iconColor: "text-violet-600",
+    titleColor: "text-[#7B3FF2]",
+    descColor: "text-[#0B55B7]",
   },
 
   {
@@ -26,6 +28,8 @@ const features = [
       "Study from anywhere in the world at your own pace with complete flexibility.",
     bg: "bg-sky-100",
     iconColor: "text-sky-600",
+    titleColor: "text-[#0B55B7]",
+    descColor: "text-[#52C24E]",
   },
 
   {
@@ -35,6 +39,8 @@ const features = [
       "Receive recognized certificates that strengthen your teaching career.",
     bg: "bg-green-100",
     iconColor: "text-green-600",
+    titleColor: "text-[#52C24E]",
+    descColor: "text-[#FF8A00]",
   },
 
   {
@@ -44,6 +50,8 @@ const features = [
       "Become part of a growing community of educators, parents and future teachers.",
     bg: "bg-orange-100",
     iconColor: "text-orange-500",
+    titleColor: "text-[#FF8A00]",
+    descColor: "text-[#7B3FF2]",
   },
 ];
 
@@ -88,7 +96,7 @@ const WhyTMC = () => {
               viewport={{
                 once: true,
               }}
-              className="text-5xl font-bold leading-tight"
+              className="text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl"
             >
 
          <span className="text-violet-600">
@@ -123,13 +131,14 @@ TMC
               viewport={{
                 once: true,
               }}
-              className="mt-8 max-w-xl text-lg leading-8 text-slate-600"
+              className="mt-8 max-w-xl text-lg leading-8 font-medium"
             >
-              At The Montessori Castle, we believe every educator deserves
-              practical, engaging and internationally inspired Montessori
-              training. Our programs empower teachers, assistants and parents
-              with the confidence to create meaningful learning experiences
-              for every child.
+              <span className="text-[#7B3FF2]">At The Montessori Castle, </span>
+              <span className="text-[#0B55B7]">we believe every educator deserves practical, engaging </span>
+              <span className="text-[#52C24E]">and internationally inspired Montessori training. </span>
+              <span className="text-[#FF8A00]">Our programs empower teachers, assistants and parents </span>
+              <span className="text-[#7B3FF2]">with the confidence to create meaningful learning experiences </span>
+              <span className="text-[#0B55B7]">for every child.</span>
             </motion.p>
 
             {/* Cards */}
@@ -179,11 +188,11 @@ TMC
 
                     <div>
 
-                      <h3 className="text-xl font-bold text-slate-900">
+                      <h3 className={`text-xl font-bold ${item.titleColor}`}>
                         {item.title}
                       </h3>
 
-                      <p className="mt-2 leading-7 text-slate-600">
+                      <p className={`mt-2 leading-7 font-medium ${item.descColor}`}>
                         {item.description}
                       </p>
 
@@ -258,7 +267,7 @@ TMC
       muted
       loop
       playsInline
-     className="h-[500px] w-[280px] rounded-[24px] object-cover"
+     className="h-auto max-h-[500px] w-full max-w-[280px] rounded-[24px] object-cover"
     />
 
   </motion.div>
@@ -291,7 +300,7 @@ TMC
         className="relative z-10 mx-auto mt-24 max-w-6xl px-6"
       >
 
-        <div className="overflow-hidden rounded-[40px] bg-gradient-to-r from-orange-500 via-orange-400 to-yellow-400 p-12 shadow-[0_30px_80px_rgba(59,130,246,.25)]">
+        <div className="overflow-hidden rounded-[28px] bg-gradient-to-r from-orange-500 via-orange-400 to-yellow-400 p-8 shadow-[0_30px_80px_rgba(59,130,246,.25)] sm:rounded-[40px] sm:p-12">
 
           {/* Floating Glow */}
 
@@ -316,7 +325,7 @@ TMC
               viewport={{
                 once: true,
               }}
-              className="text-4xl font-bold text-white"
+              className="text-3xl font-bold text-white sm:text-4xl"
             >
 
               Your Montessori Journey Starts Here.
