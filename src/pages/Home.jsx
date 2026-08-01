@@ -60,30 +60,39 @@ const Home = () => {
 
         <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-            <div>
-              <h1 className="text-4xl font-black leading-[1.05] md:text-5xl lg:text-[58px] headline-animate">
-                <span className="inline-block text-violet-600" style={{ animationDelay: '0.1s' }}>Shaping the Mind</span>
-                <br />
-                <span className="inline-block text-orange-500" style={{ animationDelay: '0.25s' }}>that Shape</span>{" "}
-                <span className="inline-block text-green-500" style={{ animationDelay: '0.4s' }}>the future</span>
+            <div className="flex flex-col items-start text-left">
+              <h1 className="max-w-xl text-3xl font-extrabold leading-[1.25] md:text-4xl lg:text-[42px] headline-animate">
+                <span className="inline" style={{ animationDelay: "0.1s" }}>
+                  <span className="text-[#7B3FF2]">At </span>
+                  <span className="text-[#7B3FF2]">The</span>{" "}
+                  <span className="text-[#0B55B7]">Montessori</span>{" "}
+                  <span className="text-[#52C24E]">Castle</span>
+                  <span className="text-[#0B55B7]">, we empower </span>
+                  <span className="text-[#7B3FF2]">educators</span>
+                  <span className="text-[#FF8A00]">, support </span>
+                  <span className="text-[#FF8A00]">parents</span>
+                  <span className="text-[#52C24E]">, and inspire </span>
+                  <span className="text-[#52C24E]">young minds </span>
+                  <span className="text-[#7B3FF2]">through quality training, </span>
+                  <span className="text-[#0B55B7]">practical workshops, </span>
+                  <span className="text-[#FF8A00]">and meaningful learning experiences.</span>
+                </span>
               </h1>
 
-              <p className="mt-8 max-w-xl text-base leading-7 text-slate-800 font-medium">
-                The Montessori Castle is a training academy for aspiring and practising educators. Learn the Montessori method the way it was meant to be hands-on, joyful, and rooted in the child.
-              </p>
-
-              <div className="mt-8 flex flex-wrap gap-5">
+              <div className="mt-8 flex w-full flex-col gap-4 sm:flex-row sm:flex-wrap sm:justify-start">
                 <a
                   href="#courses"
-                  className="flex items-center gap-3 rounded-full bg-violet-600 px-8 py-4 font-semibold text-white shadow-xl transition hover:bg-violet-700"
+                  className="flex items-center justify-center gap-3 rounded-full bg-violet-600 px-8 py-4 font-semibold text-white shadow-xl transition hover:bg-violet-700"
                 >
                   Explore Courses
                   <ArrowRight size={20} />
                 </a>
 
                 <a
-                  href="#contact"
-                  className="rounded-full border-2 border-violet-300 px-6 py-3 font-semibold text-violet-600 transition hover:bg-violet-50"
+                  href="https://wa.me/966511247864?text=Hey%2C%20I%20want%20to%20talk%20to%20an%20advisor"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border-2 border-violet-300 px-6 py-3 text-center font-semibold text-violet-600 transition hover:bg-violet-50"
                 >
                   Talk to an Advisor
                 </a>
@@ -281,11 +290,14 @@ transition={{
   stiffness: 70,
 }}
   viewport={{ once: true }}
-  className="mt-6 text-4xl font-bold leading-tight text-slate-900"
+  className="mt-6 text-3xl font-bold leading-tight sm:text-4xl"
 >
-  A calm, practical path
+  <span className="text-[#7B3FF2]">A calm, </span>
+  <span className="text-[#0B55B7]">practical path</span>
   <br />
-  into Montessori learning.
+  <span className="text-[#FF8A00]">into </span>
+  <span className="text-[#52C24E]">Montessori </span>
+  <span className="text-[#7B3FF2]">learning.</span>
 </motion.h2>
 
     <TypeWriter />
@@ -345,10 +357,26 @@ transition={{
 };
 
 function TypeWriter() {
-  const text =
-    "We believe learning should be inspiring, practical and accessible. Every course is designed to help teachers, parents and caregivers build confidence through real-world Montessori knowledge.";
+  const segments = [
+    { text: "We believe learning should be ", color: "text-[#7B3FF2]" },
+    { text: "inspiring", color: "text-[#FF8A00]" },
+    { text: ", ", color: "text-[#7B3FF2]" },
+    { text: "practical", color: "text-[#0B55B7]" },
+    { text: " and ", color: "text-[#7B3FF2]" },
+    { text: "accessible", color: "text-[#52C24E]" },
+    { text: ". Every course is designed to help ", color: "text-[#0B55B7]" },
+    { text: "teachers", color: "text-[#7B3FF2]" },
+    { text: ", ", color: "text-[#0B55B7]" },
+    { text: "parents", color: "text-[#FF8A00]" },
+    { text: " and ", color: "text-[#0B55B7]" },
+    { text: "caregivers", color: "text-[#52C24E]" },
+    { text: " build confidence through real-world ", color: "text-[#0B55B7]" },
+    { text: "Montessori", color: "text-[#7B3FF2]" },
+    { text: " knowledge.", color: "text-[#52C24E]" },
+  ];
 
-  const [displayText, setDisplayText] = useState("");
+  const fullText = segments.map((s) => s.text).join("");
+  const [charCount, setCharCount] = useState(0);
   const [started, setStarted] = useState(false);
 
   useEffect(() => {
@@ -357,16 +385,18 @@ function TypeWriter() {
     let i = 0;
 
     const interval = setInterval(() => {
-      setDisplayText(text.substring(0, i));
       i++;
+      setCharCount(i);
 
-      if (i > text.length) {
+      if (i >= fullText.length) {
         clearInterval(interval);
       }
     }, 18);
 
     return () => clearInterval(interval);
-  }, [started]);
+  }, [started, fullText.length]);
+
+  let remaining = charCount;
 
   return (
     <motion.p
@@ -374,10 +404,23 @@ function TypeWriter() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       onViewportEnter={() => setStarted(true)}
-      className="mt-6 max-w-xl text-lg leading-8 text-slate-600"
+      className="mt-6 max-w-xl text-lg font-medium leading-8"
     >
-      {displayText}
-      {started && <span className="animate-pulse text-violet-600">|</span>}
+      {segments.map((segment, index) => {
+        if (remaining <= 0) return null;
+
+        const visible = segment.text.slice(0, remaining);
+        remaining -= visible.length;
+
+        return (
+          <span key={index} className={segment.color}>
+            {visible}
+          </span>
+        );
+      })}
+      {started && charCount < fullText.length && (
+        <span className="animate-pulse text-[#7B3FF2]">|</span>
+      )}
     </motion.p>
   );
 }
