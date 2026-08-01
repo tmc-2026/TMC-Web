@@ -3,7 +3,6 @@ import {
   GraduationCap,
   Globe2,
   HeartHandshake,
-  Sparkles,
   ArrowRight,
 } from "lucide-react";
 
@@ -14,18 +13,24 @@ export default function About() {
       title: "Certified Programs",
       desc: "Professional Montessori teacher training and internationally recognized certification courses.",
       color: "from-violet-500 to-violet-600",
+      titleColor: "text-[#7B3FF2]",
+      descColor: "text-[#0B55B7]",
     },
     {
       icon: HeartHandshake,
       title: "Practical Learning",
       desc: "Hands-on workshops and real classroom strategies designed for modern educators.",
       color: "from-orange-400 to-orange-500",
+      titleColor: "text-[#FF8A00]",
+      descColor: "text-[#52C24E]",
     },
     {
       icon: Globe2,
       title: "Global Community",
       desc: "Supporting teachers, schools, parents and caregivers across different countries.",
       color: "from-green-500 to-emerald-500",
+      titleColor: "text-[#52C24E]",
+      descColor: "text-[#7B3FF2]",
     },
   ];
 
@@ -47,12 +52,12 @@ export default function About() {
         <div className="text-center mb-20">
 
 
-          <h2 className="mt-6 text-4xl md:text-5xl font-bold leading-tight text-orange-500">
+          <h2 className="mt-6 text-4xl md:text-5xl font-bold leading-tight">
 
-            The Heart Behind{" "}
+            <span className="text-[#FF8A00]">The Heart Behind </span>
 
-<span className="text-violet-600">
-              The 
+            <span className="text-[#7B3FF2]">
+              The
             </span>{" "}
 
             <span className="text-[#0B55B7]">
@@ -65,11 +70,11 @@ export default function About() {
 
           </h2>
 
-          <p className="max-w-3xl mx-auto mt-6 text-lg leading-8 text-slate-700 fade-up" style={{ animationDelay: '0.15s' }}>
-            We are passionate about empowering aspiring and professional
-            educators through high-quality Montessori teacher training,
-            internationally recognized certification programs, and practical
-            learning experiences.
+          <p className="max-w-3xl mx-auto mt-6 text-lg leading-8 font-medium fade-up" style={{ animationDelay: '0.15s' }}>
+            <span className="text-[#7B3FF2]">We are passionate about empowering aspiring and professional educators </span>
+            <span className="text-[#0B55B7]">through high-quality Montessori teacher training, </span>
+            <span className="text-[#52C24E]">internationally recognized certification programs, </span>
+            <span className="text-[#FF8A00]">and practical learning experiences.</span>
           </p>
 
         </div>
@@ -83,22 +88,28 @@ export default function About() {
           <div>
 
 
-            <h3 className="mt-4 text-3xl font-bold text-slate-900 leading-tight">
-              Inspiring educators to create brighter childhoods.
+            <h3 className="mt-4 text-3xl font-bold leading-tight">
+              <span className="text-[#7B3FF2]">Inspiring educators </span>
+              <span className="text-[#0B55B7]">to create </span>
+              <span className="text-[#52C24E]">brighter childhoods.</span>
             </h3>
 
-            <p className="mt-6 text-gray-600 leading-8">
-            The Montessori Castle is a training institute where we empower teachers,
-             parents, and caregivers with practical Montessori education, child development 
-             knowledge, and compassionate guidance. Through our courses, workshops,
-              and supportive community, we help adults create nurturing environments where every child can grow with confidence, independence, curiosity, and a lifelong love of learning.
+            <p className="mt-6 leading-8 font-medium">
+              <span className="text-[#7B3FF2]">The Montessori Castle </span>
+              <span className="text-[#0B55B7]">is a training institute where we empower teachers, parents, and caregivers </span>
+              <span className="text-[#52C24E]">with practical Montessori education, child development knowledge, </span>
+              <span className="text-[#FF8A00]">and compassionate guidance. </span>
+              <span className="text-[#7B3FF2]">Through our courses, workshops, and supportive community, </span>
+              <span className="text-[#0B55B7]">we help adults create nurturing environments where every child can grow </span>
+              <span className="text-[#52C24E]">with confidence, independence, curiosity, </span>
+              <span className="text-[#FF8A00]">and a lifelong love of learning.</span>
             </p>
 
-            <p className="mt-5 text-gray-600 leading-8">
-              What started as a small educational initiative has grown into
-              a trusted learning community that provides online courses,
-              workshops, certifications, and valuable teaching resources
-              for educators around the world.
+            <p className="mt-5 leading-8 font-medium">
+              <span className="text-[#FF8A00]">What started as a small educational initiative </span>
+              <span className="text-[#7B3FF2]">has grown into a trusted learning community </span>
+              <span className="text-[#0B55B7]">that provides online courses, workshops, certifications, </span>
+              <span className="text-[#52C24E]">and valuable teaching resources for educators around the world.</span>
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
@@ -136,33 +147,34 @@ export default function About() {
 
               </div>
 
-              <h3 className="mt-8 text-center text-3xl font-bold text-[#0B55B7]">
-                Our Mission
+              <h3 className="mt-8 text-center text-3xl font-bold">
+                <span className="text-[#7B3FF2]">Our </span>
+                <span className="text-[#0B55B7]">Mission</span>
               </h3>
 
-              <p className="mt-5 text-center leading-8 text-gray-600">
-                To empower educators with practical Montessori knowledge,
-                internationally recognized certification programs, and
-                continuous professional development that positively impacts
-                children, families, and communities.
+              <p className="mt-5 text-center leading-8 font-medium">
+                <span className="text-[#7B3FF2]">To empower educators with practical Montessori knowledge, </span>
+                <span className="text-[#0B55B7]">internationally recognized certification programs, </span>
+                <span className="text-[#52C24E]">and continuous professional development </span>
+                <span className="text-[#FF8A00]">that positively impacts children, families, and communities.</span>
               </p>
 
               <div className="grid grid-cols-2 gap-5 mt-10">
 
                 <div className="rounded-2xl bg-violet-50 p-5 text-center">
-                  <h4 className="text-3xl font-bold text-violet-600">
+                  <h4 className="text-3xl font-bold text-[#7B3FF2]">
                     2500+
                   </h4>
-                  <p className="mt-2 text-gray-600 text-sm">
+                  <p className="mt-2 text-sm font-medium text-[#0B55B7]">
                     Teachers Trained
                   </p>
                 </div>
 
                 <div className="rounded-2xl bg-green-50 p-5 text-center">
-                  <h4 className="text-3xl font-bold text-green-600">
+                  <h4 className="text-3xl font-bold text-[#52C24E]">
                     15+
                   </h4>
-                  <p className="mt-2 text-gray-600 text-sm">
+                  <p className="mt-2 text-sm font-medium text-[#FF8A00]">
                     Years Experience
                   </p>
                 </div>
@@ -194,11 +206,11 @@ export default function About() {
                   <Icon className="text-white" size={30} />
                 </div>
 
-                <h3 className="mt-6 text-2xl font-bold text-slate-900">
+                <h3 className={`mt-6 text-2xl font-bold ${item.titleColor}`}>
                   {item.title}
                 </h3>
 
-                <p className="mt-4 leading-8 text-gray-600">
+                <p className={`mt-4 leading-8 font-medium ${item.descColor}`}>
                   {item.desc}
                 </p>
 
