@@ -23,6 +23,8 @@ const courses = [
     color: "from-violet-500 to-purple-600",
     bg: "from-violet-50 to-purple-50",
     icon: GraduationCap,
+    titleColor: "text-[#7B3FF2]",
+    textColor: "text-[#0B55B7]",
     points: [
       "Introduction to Montessori",
       "Child Development Basics",
@@ -41,6 +43,8 @@ const courses = [
     bg: "from-orange-50 to-yellow-50",
     featured: true,
     icon: BookOpen,
+    titleColor: "text-[#FF8A00]",
+    textColor: "text-[#7B3FF2]",
     points: [
       "Montessori Philosophy",
       "Activity Planning",
@@ -58,6 +62,8 @@ const courses = [
     color: "from-green-500 to-emerald-600",
     bg: "from-green-50 to-emerald-50",
     icon: Award,
+    titleColor: "text-[#52C24E]",
+    textColor: "text-[#0B55B7]",
     points: [
       "Complete Montessori Training",
       "Teaching Practice",
@@ -158,16 +164,16 @@ export default function Courses() {
                   <Icon size={26} />
                 </div>
 
-                <h3 className="mt-5 text-lg font-bold leading-6 text-slate-900">
+                <h3 className={`mt-5 text-lg font-bold leading-6 ${course.titleColor}`}>
                   {course.title}
                 </h3>
 
                 {course.subtitle && (
-                  <p className="mt-1 text-sm text-slate-500">{course.subtitle}</p>
+                  <p className={`mt-1 text-sm font-medium ${course.textColor}`}>{course.subtitle}</p>
                 )}
 
                 <div className="mt-8 space-y-4">
-                  <div className="flex items-center gap-3 text-slate-700">
+                  <div className={`flex items-center gap-3 font-medium ${course.textColor}`}>
                     <Clock3 size={18} />
 
                     {course.duration}
@@ -180,7 +186,7 @@ export default function Courses() {
                   {course.points.map((point) => (
                     <li
                       key={point}
-                      className="flex items-center gap-3 text-slate-700"
+                      className={`flex items-center gap-3 font-medium ${course.textColor}`}
                     >
                       <span className="h-2.5 w-2.5 rounded-full bg-green-500"></span>
 
@@ -238,13 +244,17 @@ export default function Courses() {
       <Laptop size={36} />
     </motion.div>
 
-    <h3 className="mt-6 text-4xl font-bold text-purple-700">
-      Flexible Online Learning
+    <h3 className="mt-6 text-3xl font-bold sm:text-4xl">
+      <span className="text-[#7B3FF2]">Flexible </span>
+      <span className="text-[#0B55B7]">Online </span>
+      <span className="text-[#52C24E]">Learning</span>
     </h3>
 
-    <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 text-green-700 font-semibold">
-      Learn from anywhere in the world through engaging lessons, expert
-      guidance, downloadable resources, and a schedule designed around you.
+    <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 font-semibold">
+      <span className="text-[#7B3FF2]">Learn from anywhere in the world </span>
+      <span className="text-[#0B55B7]">through engaging lessons, expert guidance, </span>
+      <span className="text-[#52C24E]">downloadable resources, </span>
+      <span className="text-[#FF8A00]">and a schedule designed around you.</span>
     </p>
 
   </div>
@@ -260,6 +270,8 @@ export default function Courses() {
         icon: Clock3,
         color: "bg-violet-100",
         iconColor: "text-violet-600",
+        titleColor: "text-[#7B3FF2]",
+        descColor: "text-[#0B55B7]",
       },
       {
         title: "Interactive Lessons",
@@ -267,6 +279,8 @@ export default function Courses() {
         icon: BookOpen,
         color: "bg-orange-100",
         iconColor: "text-orange-500",
+        titleColor: "text-[#FF8A00]",
+        descColor: "text-[#52C24E]",
       },
       {
         title: "Downloadable Resources",
@@ -274,6 +288,8 @@ export default function Courses() {
         icon: Download,
         color: "bg-sky-100",
         iconColor: "text-sky-600",
+        titleColor: "text-[#0B55B7]",
+        descColor: "text-[#7B3FF2]",
       },
       {
         title: "Expert Trainer Support",
@@ -281,20 +297,26 @@ export default function Courses() {
         icon: Users,
         color: "bg-green-100",
         iconColor: "text-green-600",
+        titleColor: "text-[#52C24E]",
+        descColor: "text-[#FF8A00]",
       },
       {
         title: "Professional Certificate",
         desc: "Receive a certificate after successful completion.",
         icon: GraduationCap,
-        color: "bg-pink-100",
-        iconColor: "text-pink-600",
+        color: "bg-violet-100",
+        iconColor: "text-violet-600",
+        titleColor: "text-[#7B3FF2]",
+        descColor: "text-[#0B55B7]",
       },
       {
         title: "Learn Anywhere",
         desc: "Join classes from home, work or while travelling.",
         icon: Laptop,
-        color: "bg-yellow-100",
-        iconColor: "text-yellow-600",
+        color: "bg-orange-100",
+        iconColor: "text-orange-500",
+        titleColor: "text-[#FF8A00]",
+        descColor: "text-[#52C24E]",
       },
     ].map((item, index) => {
 
@@ -324,11 +346,11 @@ export default function Courses() {
             />
           </div>
 
-          <h4 className="mt-5 text-lg font-semibold text-slate-900">
+          <h4 className={`mt-5 text-lg font-semibold ${item.titleColor}`}>
             {item.title}
           </h4>
 
-          <p className="mt-2 text-sm leading-6 text-slate-500">
+          <p className={`mt-2 text-sm leading-6 font-medium ${item.descColor}`}>
             {item.desc}
           </p>
 
@@ -350,8 +372,10 @@ export default function Courses() {
 <div className="absolute -bottom-20 right-0 h-80 w-80 rounded-full bg-sky-200/30 blur-3xl"></div>
 
 <div className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-yellow-200/20 blur-3xl"></div>
-        <h3 className="relative z-10 text-center text-4xl font-bold text-slate-900">
-            Who Is It For?
+        <h3 className="relative z-10 text-center text-4xl font-bold">
+            <span className="text-[#7B3FF2]">Who </span>
+            <span className="text-[#0B55B7]">Is It </span>
+            <span className="text-[#52C24E]">For?</span>
           </h3>
 
 
@@ -361,16 +385,19 @@ export default function Courses() {
                 icon: UserCheck,
                 title: "Teachers",
                 color: "bg-violet-100 text-violet-600",
+                titleColor: "text-[#7B3FF2]",
               },
               {
                 icon: Baby,
                 title: "Parents & Caregivers",
                 color: "bg-orange-100 text-orange-500",
+                titleColor: "text-[#FF8A00]",
               },
               {
                 icon: Users,
                 title: "Aspiring Educators",
                 color: "bg-green-100 text-green-600",
+                titleColor: "text-[#52C24E]",
               },
             ].map((item) => {
               const Icon = item.icon;
@@ -389,7 +416,7 @@ export default function Courses() {
                     <Icon size={36} />
                   </div>
 
-                  <h4 className="mt-6 text-2xl font-bold text-slate-900">
+                  <h4 className={`mt-6 text-2xl font-bold ${item.titleColor}`}>
                     {item.title}
                   </h4>
                 </motion.div>
@@ -404,9 +431,9 @@ export default function Courses() {
           initial={{ opacity: 0, scale: .95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="mt-24 rounded-[40px] bg-gradient-to-r from-violet-600 via-indigo-600 to-orange-500 p-12 text-center text-white shadow-2xl"
+          className="mt-24 rounded-[28px] bg-gradient-to-r from-violet-600 via-indigo-600 to-orange-500 p-8 text-center text-white shadow-2xl sm:rounded-[40px] sm:p-12"
         >
-          <h2 className="text-4xl font-bold">
+          <h2 className="text-3xl font-bold sm:text-4xl">
             Ready to Start Your Montessori Journey?
           </h2>
 
@@ -426,10 +453,18 @@ export default function Courses() {
 }
 
 function CoursesTypeWriter() {
-  const text =
-    "Explore our professionally designed Montessori and Early Childhood Education programs. Whether you're beginning your journey or becoming a certified Montessori educator, we have the perfect course for you.";
+  const segments = [
+    { text: "Explore our professionally designed ", color: "text-[#7B3FF2]" },
+    { text: "Montessori", color: "text-[#0B55B7]" },
+    { text: " and ", color: "text-[#7B3FF2]" },
+    { text: "Early Childhood Education", color: "text-[#52C24E]" },
+    { text: " programs. Whether you're beginning your journey or becoming a ", color: "text-[#0B55B7]" },
+    { text: "certified Montessori educator", color: "text-[#FF8A00]" },
+    { text: ", we have the perfect course for you.", color: "text-[#7B3FF2]" },
+  ];
 
-  const [displayText, setDisplayText] = useState("");
+  const fullText = segments.map((s) => s.text).join("");
+  const [charCount, setCharCount] = useState(0);
   const [started, setStarted] = useState(false);
 
   useEffect(() => {
@@ -438,14 +473,16 @@ function CoursesTypeWriter() {
     let i = 0;
 
     const interval = setInterval(() => {
-      setDisplayText(text.substring(0, i));
       i++;
+      setCharCount(i);
 
-      if (i > text.length) clearInterval(interval);
+      if (i >= fullText.length) clearInterval(interval);
     }, 15);
 
     return () => clearInterval(interval);
-  }, [started]);
+  }, [started, fullText.length]);
+
+  let remaining = charCount;
 
   return (
   <motion.p
@@ -466,12 +503,22 @@ function CoursesTypeWriter() {
   onViewportEnter={() => setStarted(true)}
   whileHover={{
     scale: 1.02,
-    color: "#4f46e5",
   }}
-  className="mx-auto mt-6 max-w-3xl text-center text-lg leading-8 text-slate-600 transition-colors duration-300"
+  className="mx-auto mt-6 max-w-3xl text-center text-lg leading-8 font-medium transition-colors duration-300"
 >
-      {displayText}
-      {started && (
+      {segments.map((segment, index) => {
+        if (remaining <= 0) return null;
+
+        const visible = segment.text.slice(0, remaining);
+        remaining -= visible.length;
+
+        return (
+          <span key={index} className={segment.color}>
+            {visible}
+          </span>
+        );
+      })}
+      {started && charCount < fullText.length && (
         <span className="ml-1 inline-block h-6 w-[3px] rounded-full bg-gradient-to-b from-violet-600 via-blue-500 to-green-500 animate-pulse align-middle"></span>
       )}
     </motion.p>
