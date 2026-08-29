@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import heroImage from "../assets/heroimage.png";
 import {
   ArrowRight,
@@ -10,7 +12,15 @@ import {
   Globe2,
 } from "lucide-react"
 
+gsap.registerPlugin(ScrollTrigger);
+
 const Home = () => {
+  const heroSectionRef = useRef(null);
+  const heroLeftRef = useRef(null);
+  const heroRightRef = useRef(null);
+  const introSectionRef = useRef(null);
+  const introLeftRef = useRef(null);
+  const introRightRef = useRef(null);
 
   const highlights = [
   {
@@ -33,9 +43,50 @@ const Home = () => {
   },
 ];
 
+  useEffect(() => {
+    const slideIn = (section, left, right) => {
+      if (!section || !left || !right) return;
+
+      gsap.set(left, { x: -120, opacity: 0 });
+      gsap.set(right, { x: 120, opacity: 0 });
+
+      gsap.to(left, {
+        x: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 75%",
+          toggleActions: "restart none restart none",
+        },
+      });
+
+      gsap.to(right, {
+        x: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: section,
+          start: "top 75%",
+          toggleActions: "restart none restart none",
+        },
+      });
+    };
+
+    const ctx = gsap.context(() => {
+      slideIn(heroSectionRef.current, heroLeftRef.current, heroRightRef.current);
+      slideIn(introSectionRef.current, introLeftRef.current, introRightRef.current);
+    });
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <div className="w-full">
      <section
+  ref={heroSectionRef}
   id="home"
   className="relative -mt-px overflow-hidden bg-gradient-to-r from-[#FFF9EC] via-white to-[#EEF8FF] min-h-[calc(100vh-72px)] py-10 scroll-mt-24"
 >
@@ -60,29 +111,20 @@ const Home = () => {
 
         <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-            <div className="flex flex-col items-start text-left">
-              <h1 className="max-w-xl text-3xl font-extrabold leading-[1.25] md:text-4xl lg:text-[42px] headline-animate">
-                <span className="inline" style={{ animationDelay: "0.1s" }}>
-                  <span className="text-[#7B3FF2]">At </span>
-                  <span className="text-[#7B3FF2]">The</span>{" "}
-                  <span className="text-[#0B55B7]">Montessori</span>{" "}
-                  <span className="text-[#52C24E]">Castle</span>
-                  <span className="text-[#0B55B7]">, we empower </span>
-                  <span className="text-[#7B3FF2]">educators</span>
-                  <span className="text-[#FF8A00]">, support </span>
-                  <span className="text-[#FF8A00]">parents</span>
-                  <span className="text-[#52C24E]">, and inspire </span>
-                  <span className="text-[#52C24E]">young minds </span>
-                  <span className="text-[#7B3FF2]">through quality training, </span>
-                  <span className="text-[#0B55B7]">practical workshops, </span>
-                  <span className="text-[#FF8A00]">and meaningful learning experiences.</span>
-                </span>
+            <div ref={heroLeftRef} className="flex flex-col items-start text-left">
+              <h1 className="max-w-xl text-[28px] font-extrabold leading-[1.35] tracking-tight md:text-[34px] lg:text-[38px] headline-animate">
+                <span className="text-[#52C24E]">Making the world a better place.</span>
+                <br />
+                <span className="text-[#FF8A00]">Start your educational journey at </span>
+                <span className="text-[#7B3FF2]">The</span>{" "}
+                <span className="text-[#0B55B7]">Montessori</span>{" "}
+                <span className="text-[#52C24E]">Castle</span>
               </h1>
 
-              <div className="mt-8 flex w-full flex-col gap-4 sm:flex-row sm:flex-wrap sm:justify-start">
+              <div className="mt-14 flex w-full flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-start">
                 <a
                   href="#courses"
-                  className="flex items-center justify-center gap-3 rounded-full bg-violet-600 px-8 py-4 font-semibold text-white shadow-xl transition hover:bg-violet-700"
+                  className="inline-flex items-center justify-center gap-3 rounded-full bg-violet-600 px-8 py-4 font-semibold text-white shadow-xl transition hover:bg-violet-700"
                 >
                   Explore Courses
                   <ArrowRight size={20} />
@@ -92,7 +134,7 @@ const Home = () => {
                   href="https://wa.me/966511247864?text=Hey%2C%20I%20want%20to%20talk%20to%20an%20advisor"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full border-2 border-violet-300 px-6 py-3 text-center font-semibold text-violet-600 transition hover:bg-violet-50"
+                  className="inline-flex items-center justify-center rounded-full border-2 border-violet-300 px-8 py-4 text-center font-semibold text-violet-600 transition hover:bg-violet-50"
                 >
                   Talk to an Advisor
                 </a>
@@ -103,7 +145,7 @@ const Home = () => {
 
 {/* RIGHT */}
 
-<div className="relative hidden lg:flex justify-center">
+<div ref={heroRightRef} className="relative hidden lg:flex justify-center">
 
   {/* Glow */}
 
@@ -134,11 +176,11 @@ const Home = () => {
 
       <div>
 
-        <h4 className="font-bold">
+        <h4 className="text-[1.1rem] font-bold">
           Certified
         </h4>
 
-        <p className="text-xs text-gray-500">
+        <p className="text-[0.825rem] text-gray-500">
           Courses
         </p>
 
@@ -164,11 +206,11 @@ const Home = () => {
 
       <div>
 
-        <h4 className="font-bold">
+        <h4 className="text-[1.1rem] font-bold">
           2500+
         </h4>
 
-        <p className="text-xs text-gray-500">
+        <p className="text-[0.825rem] text-gray-500">
           Teachers
         </p>
 
@@ -194,11 +236,11 @@ const Home = () => {
 
       <div>
 
-        <h4 className="font-bold">
+        <h4 className="text-[1.1rem] font-bold">
           Practical
         </h4>
 
-        <p className="text-xs text-gray-500">
+        <p className="text-[0.825rem] text-gray-500">
           Learning
         </p>
 
@@ -224,11 +266,11 @@ const Home = () => {
 
       <div>
 
-        <h4 className="font-bold">
+        <h4 className="text-[1.1rem] font-bold">
           Global
         </h4>
 
-        <p className="text-xs text-gray-500">
+        <p className="text-[0.825rem] text-gray-500">
           Community
         </p>
 
@@ -251,7 +293,7 @@ const Home = () => {
 
       </section>
 
-      <section className="relative overflow-hidden py-24">
+      <section ref={introSectionRef} className="relative overflow-hidden py-24">
 
   <div className="absolute inset-0 bg-gradient-to-r from-[#FFF8E8] via-white to-[#EEF8FF]"></div>
 
@@ -263,33 +305,10 @@ const Home = () => {
 
     <div className="grid lg:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
 
-      <div>
+      <div ref={introLeftRef}>
 
 
-<motion.h2
-  initial={{
-  opacity:0,
-  y:80,
-  rotateX:30
-}}
-
-whileInView={{
-  opacity:1,
-  y:0,
-  rotateX:0
-}}
-
-whileHover={{
-  scale: 1.02,
-}}
-
-transition={{
-  duration: 1,
-  delay: 0.15,
-  type: "spring",
-  stiffness: 70,
-}}
-  viewport={{ once: true }}
+<h2
   className="mt-6 text-3xl font-bold leading-tight sm:text-4xl"
 >
   <span className="text-[#7B3FF2]">A calm, </span>
@@ -298,13 +317,13 @@ transition={{
   <span className="text-[#FF8A00]">into </span>
   <span className="text-[#52C24E]">Montessori </span>
   <span className="text-[#7B3FF2]">learning.</span>
-</motion.h2>
+</h2>
 
     <TypeWriter />
 
       </div>
 
-      <div className="rounded-[32px] bg-white border border-violet-100 shadow-xl p-8">
+      <div ref={introRightRef} className="rounded-[32px] bg-white border border-violet-100 shadow-xl p-8">
 
         <ul className="space-y-5">
 

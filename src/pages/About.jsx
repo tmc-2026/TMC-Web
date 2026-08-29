@@ -1,3 +1,6 @@
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   BookOpen,
   GraduationCap,
@@ -6,7 +9,13 @@ import {
   ArrowRight,
 } from "lucide-react";
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function About() {
+  const aboutGridRef = useRef(null);
+  const aboutLeftRef = useRef(null);
+  const aboutRightRef = useRef(null);
+  const featuresRef = useRef(null);
   const features = [
     {
       icon: GraduationCap,
@@ -33,6 +42,64 @@ export default function About() {
       descColor: "text-[#7B3FF2]",
     },
   ];
+
+  useEffect(() => {
+    const grid = aboutGridRef.current;
+    const left = aboutLeftRef.current;
+    const right = aboutRightRef.current;
+    const features = featuresRef.current;
+
+    const ctx = gsap.context(() => {
+      if (grid && left && right) {
+        gsap.set(left, { x: -120, opacity: 0 });
+        gsap.set(right, { x: 120, opacity: 0 });
+
+        gsap.to(left, {
+          x: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: grid,
+            start: "top 75%",
+            toggleActions: "restart none restart none",
+          },
+        });
+
+        gsap.to(right, {
+          x: 0,
+          opacity: 1,
+          duration: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: grid,
+            start: "top 75%",
+            toggleActions: "restart none restart none",
+          },
+        });
+      }
+
+      if (features) {
+        const cards = features.querySelectorAll(".about-feature-card");
+
+        gsap.set(cards, { y: -90, opacity: 0 });
+        gsap.to(cards, {
+          y: 0,
+          opacity: 1,
+          duration: 0.9,
+          stagger: 0.16,
+          ease: "bounce.out",
+          scrollTrigger: {
+            trigger: features,
+            start: "top 80%",
+            toggleActions: "restart none restart none",
+          },
+        });
+      }
+    });
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <section
@@ -81,11 +148,11 @@ export default function About() {
 
         {/* Main Grid */}
 
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div ref={aboutGridRef} className="grid lg:grid-cols-2 gap-16 items-center">
 
           {/* Left */}
 
-          <div>
+          <div ref={aboutLeftRef}>
 
 
             <h3 className="mt-4 text-3xl font-bold leading-tight">
@@ -132,7 +199,7 @@ export default function About() {
 
           {/* Right Card */}
 
-          <div className="relative">
+          <div ref={aboutRightRef} className="relative">
 
             <div className="absolute -top-5 -left-5 w-full h-full rounded-[35px] bg-gradient-to-r from-violet-300/20 via-yellow-200/20 to-green-300/20 blur-xl"></div>
 
@@ -189,7 +256,7 @@ export default function About() {
 
                 {/* Features */}
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-24">
+        <div ref={featuresRef} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mt-24">
 
           {features.map((item, index) => {
             const Icon = item.icon;
@@ -197,7 +264,7 @@ export default function About() {
             return (
               <div
                 key={index}
-                className="group bg-white rounded-[30px] p-8 shadow-lg border border-gray-100 hover:-translate-y-2 hover:shadow-2xl transition duration-500"
+                className="about-feature-card group bg-white rounded-[30px] p-8 shadow-lg border border-gray-100 hover:-translate-y-2 hover:shadow-2xl transition duration-500"
               >
 
                 <div

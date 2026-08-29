@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   GraduationCap,
   BookOpen,
@@ -13,6 +15,8 @@ import {
   Baby,
   ArrowRight,
 } from "lucide-react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const courses = [
   {
@@ -74,6 +78,40 @@ const courses = [
 ];
 
 export default function Courses() {
+  const flexCardsRef = useRef(null);
+
+  useEffect(() => {
+    const grid = flexCardsRef.current;
+    if (!grid) return;
+
+    const cards = grid.querySelectorAll(".flex-learn-card");
+    const ctx = gsap.context(() => {
+      gsap.set(cards, {
+        y: 40,
+        opacity: 0,
+        scale: 0.92,
+        rotation: (i) => (i % 2 === 0 ? -8 : 8),
+      });
+
+      gsap.to(cards, {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        rotation: 0,
+        duration: 1,
+        stagger: 0.14,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: grid,
+          start: "top 80%",
+          toggleActions: "restart none restart none",
+        },
+      });
+    }, grid);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
     <section
       id="courses"
@@ -261,7 +299,7 @@ export default function Courses() {
 
   {/* Cards */}
 
-  <div className="relative z-10 mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+  <div ref={flexCardsRef} className="relative z-10 mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 
     {[
       {
@@ -334,7 +372,7 @@ export default function Courses() {
             type: "spring",
             stiffness: 220,
           }}
-          className="group rounded-[28px] border border-white bg-white/90 p-6 backdrop-blur shadow-lg hover:shadow-2xl hover:border-violet-200 transition-all duration-300"
+          className="flex-learn-card group rounded-[28px] border border-white bg-white/90 p-6 backdrop-blur shadow-lg hover:shadow-2xl hover:border-violet-200 transition-all duration-300"
         >
 
           <div
@@ -442,9 +480,14 @@ export default function Courses() {
             educators learning with The Montessori Castle.
           </p>
 
-          <button className="mt-8 rounded-full bg-white px-10 py-4 font-semibold text-violet-700 transition hover:scale-105">
+          <a
+            href="https://wa.me/966511247864?text=HI%20I%20WANT%20TO%20REGISTER%20TO%20TMC%20COURSE"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-8 inline-block rounded-full bg-white px-10 py-4 font-semibold text-violet-700 transition hover:scale-105"
+          >
             Register Today
-          </button>
+          </a>
         </motion.div>
       </div>
     </section>

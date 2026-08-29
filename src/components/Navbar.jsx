@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Menu, X, Instagram, Facebook } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import logo from "../assets/logo.png";
 
 const INSTAGRAM_URL = "https://www.instagram.com/themontessoricastle_/";
@@ -189,7 +189,11 @@ const Navbar = () => {
               aria-label="Instagram"
               className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-[#f58529] via-[#dd2a7b] to-[#8134af] text-white shadow-md transition hover:scale-105"
             >
-              <Instagram size={22} />
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-[22px] w-[22px]" aria-hidden="true">
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+              </svg>
             </a>
             <a
               href={FACEBOOK_URL}
@@ -198,7 +202,9 @@ const Navbar = () => {
               aria-label="Facebook"
               className="flex h-12 w-12 items-center justify-center rounded-full bg-[#1877F2] text-white shadow-md transition hover:scale-105"
             >
-              <Facebook size={22} />
+              <svg viewBox="0 0 24 24" fill="currentColor" className="h-[22px] w-[22px]" aria-hidden="true">
+                <path d="M14 8h3V4h-3c-2.8 0-5 2.2-5 5v3H6v4h3v8h4v-8h3.2l.8-4H13V9c0-.6.4-1 1-1z" />
+              </svg>
             </a>
             <a
               href={WHATSAPP_URL}
