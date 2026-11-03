@@ -68,14 +68,14 @@ const Navbar = () => {
 
   const LangToggle = ({ className = "" }) => (
     <div
-      className={`inline-flex items-center rounded-full border border-violet-200 bg-violet-50/80 p-0.5 text-xs font-bold ${className}`}
+      className={`inline-flex items-center rounded-full border border-violet-200 bg-violet-50/80 p-0.5 text-[11px] font-bold sm:text-xs ${className}`}
       role="group"
       aria-label="Language"
     >
       <button
         type="button"
         onClick={() => setLang("en")}
-        className={`rounded-full px-2.5 py-1.5 transition ${
+        className={`rounded-full px-2 py-1 transition sm:px-2.5 sm:py-1.5 ${
           lang === "en"
             ? "bg-violet-600 text-white shadow-sm"
             : "text-violet-700 hover:bg-white/70"
@@ -86,7 +86,7 @@ const Navbar = () => {
       <button
         type="button"
         onClick={() => setLang("ar")}
-        className={`rounded-full px-2.5 py-1.5 transition ${
+        className={`rounded-full px-2 py-1 transition sm:px-2.5 sm:py-1.5 ${
           lang === "ar"
             ? "bg-violet-600 text-white shadow-sm"
             : "text-violet-700 hover:bg-white/70"
@@ -117,14 +117,14 @@ const Navbar = () => {
           hidden ? "-translate-y-full" : "translate-y-0"
         }`}
       >
-        <div className="mx-auto flex h-[72px] max-w-[1280px] items-center justify-between gap-3 px-4 sm:px-6 lg:px-8">
-          <div className="flex min-w-0 items-center gap-2 sm:gap-3">
+        <div className="mx-auto flex h-[72px] max-w-[1280px] items-center justify-between gap-1.5 px-2.5 sm:gap-3 sm:px-6 lg:px-8">
+          <div className="flex min-w-0 flex-1 items-center gap-1 sm:gap-3">
             <img
               src={logo}
               alt="TMC Logo"
-              className="h-12 w-12 shrink-0 object-contain sm:h-16 sm:w-16"
+              className="h-9 w-9 shrink-0 object-contain sm:h-16 sm:w-16"
             />
-            <BrandName className="truncate text-[18px] font-semibold leading-tight sm:text-[20px] lg:text-[28px] lg:whitespace-nowrap" />
+            <BrandName className="whitespace-nowrap text-[clamp(11px,3.1vw,13px)] font-semibold leading-none tracking-tight sm:text-[20px] lg:text-[28px]" />
           </div>
 
           <nav className="ml-4 hidden items-center gap-2 xl:gap-6 lg:flex">
@@ -142,8 +142,8 @@ const Navbar = () => {
               ))}
           </nav>
 
-          <div className="flex items-center gap-2 sm:gap-3">
-            <LangToggle className="shrink-0" />
+          <div className="flex shrink-0 items-center gap-1 sm:gap-3">
+            <LangToggle />
 
             <a
               href="#contact"
@@ -156,11 +156,11 @@ const Navbar = () => {
             <button
               type="button"
               onClick={() => setMobileMenu(true)}
-              className="inline-flex h-11 w-11 items-center justify-center rounded-xl text-[#7B3FF2] transition hover:bg-violet-50 lg:hidden"
+              className="inline-flex h-9 w-9 items-center justify-center rounded-xl text-[#7B3FF2] transition hover:bg-violet-50 sm:h-11 sm:w-11 lg:hidden"
               aria-label={t("nav.openMenu")}
               aria-expanded={mobileMenu}
             >
-              <Menu size={28} strokeWidth={2.5} />
+              <Menu size={24} strokeWidth={2.5} />
             </button>
           </div>
         </div>
