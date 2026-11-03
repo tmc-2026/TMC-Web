@@ -15,7 +15,11 @@ const quickLinks = [
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-gradient-to-br from-[#FF8A00] via-[#FF7A00] to-[#F06A00] text-white">
+    <footer
+      dir="ltr"
+      lang="en"
+      className="relative overflow-hidden bg-gradient-to-br from-[#FF8A00] via-[#FF7A00] to-[#F06A00] text-white"
+    >
       <div className="absolute -left-20 top-0 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
       <div className="absolute -right-16 bottom-0 h-72 w-72 rounded-full bg-yellow-200/20 blur-3xl" />
 

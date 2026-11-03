@@ -11,61 +11,43 @@ import {
   BadgeCheck,
   Palette,
 } from "lucide-react";
+import { useLanguage, TextSegments } from "../i18n/LanguageContext";
 
-const workshops = [
+const workshopMeta = [
   {
-    title: "Montessori Classroom Setup",
-    date: "15 July 2026",
-    duration: "2 Days",
-    mode: "Live Online",
-    badge: "Popular",
     color: "from-violet-500 to-fuchsia-500",
     titleColor: "text-[#7B3FF2]",
   },
   {
-    title: "Creative Learning Activities",
-    date: "30 July 2026",
-    duration: "1 Day",
-    mode: "Interactive",
-    badge: "New",
     color: "from-orange-500 to-amber-500",
     titleColor: "text-[#FF8A00]",
   },
   {
-    title: "Child Observation Workshop",
-    date: "18 August 2026",
-    duration: "2 Days",
-    mode: "Live Online",
-    badge: "Featured",
     color: "from-green-500 to-emerald-500",
     titleColor: "text-[#52C24E]",
   },
 ];
 
-const categories = [
+const categoryMeta = [
   {
-    title: "Montessori",
     icon: GraduationCap,
     color: "bg-violet-100 text-violet-600",
     titleColor: "text-[#7B3FF2]",
     descColor: "text-[#0B55B7]",
   },
   {
-    title: "Creative Arts",
     icon: Palette,
     color: "bg-orange-100 text-orange-500",
     titleColor: "text-[#FF8A00]",
     descColor: "text-[#52C24E]",
   },
   {
-    title: "Child Development",
     icon: Users,
     color: "bg-sky-100 text-sky-600",
     titleColor: "text-[#0B55B7]",
     descColor: "text-[#7B3FF2]",
   },
   {
-    title: "Teaching Skills",
     icon: BookOpen,
     color: "bg-green-100 text-green-600",
     titleColor: "text-[#52C24E]",
@@ -74,6 +56,18 @@ const categories = [
 ];
 
 export default function Workshops() {
+  const { t } = useLanguage();
+  const workshopTexts = t("workshops.list");
+  const workshops = workshopMeta.map((meta, i) => ({
+    ...meta,
+    ...workshopTexts[i],
+  }));
+  const categoryTitles = t("workshops.categories");
+  const categories = categoryMeta.map((meta, i) => ({
+    ...meta,
+    title: categoryTitles[i],
+  }));
+
   return (
     <section
       id="workshops"
@@ -104,7 +98,7 @@ export default function Workshops() {
               <Sparkles className="shrink-0 text-orange-500" size={18} />
 
               <span className="text-sm font-semibold text-[#7B3FF2] sm:text-base">
-                Interactive Montessori Workshops
+                {t("workshops.badge")}
               </span>
 
             </div>
@@ -112,29 +106,26 @@ export default function Workshops() {
             <h2 className="mt-8 text-4xl font-black leading-tight sm:text-5xl">
 
               <span className="text-violet-600">
-                Learn.
+                {t("workshops.learn")}
               </span>
 
               <br />
 
               <span className="text-orange-500">
-                Practice.
+                {t("workshops.practice")}
               </span>
 
               <br />
 
               <span className="text-green-500">
-                Inspire.
+                {t("workshops.inspire")}
               </span>
 
             </h2>
 
             <p className="mt-8 max-w-xl text-lg leading-8 font-medium">
 
-              <span className="text-[#7B3FF2]">Join our engaging Montessori workshops designed </span>
-              <span className="text-[#0B55B7]">for teachers, assistants, parents and caregivers. </span>
-              <span className="text-[#52C24E]">Learn through practical demonstrations, live activities </span>
-              <span className="text-[#FF8A00]">and interactive discussions.</span>
+              <TextSegments segments={t("workshops.intro")} />
 
             </p>
 
@@ -144,9 +135,9 @@ export default function Workshops() {
                 href="#upcoming"
                 className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-violet-600 px-8 py-4 font-semibold text-white shadow-xl transition hover:scale-105 sm:w-auto"
               >
-                Upcoming Workshops
+                {t("workshops.upcomingBtn")}
 
-                <ArrowRight size={20} />
+                <ArrowRight size={20} className="rtl:rotate-180" />
 
               </a>
 
@@ -154,7 +145,7 @@ export default function Workshops() {
                 href="#contact"
                 className="inline-flex w-full items-center justify-center rounded-full border-2 border-violet-300 px-8 py-4 font-semibold text-violet-600 transition hover:bg-violet-50 sm:w-auto"
               >
-                Reserve Your Seat
+                {t("workshops.reserveSeat")}
               </a>
 
             </div>
@@ -181,15 +172,13 @@ export default function Workshops() {
             >
               <div className="inline-flex rounded-full bg-violet-100 px-4 py-2 font-semibold text-violet-700">
 
-                Featured Workshop
+                {t("workshops.featured")}
 
               </div>
 
               <h3 className="mt-6 text-3xl font-bold">
 
-                <span className="text-[#7B3FF2]">Montessori </span>
-                <span className="text-[#0B55B7]">Classroom </span>
-                <span className="text-[#52C24E]">Setup</span>
+                <TextSegments segments={t("workshops.featuredTitle")} />
 
               </h3>
 
@@ -201,13 +190,13 @@ export default function Workshops() {
 
                     <CalendarDays size={18} />
 
-                    Date
+                    {t("workshops.date")}
 
                   </span>
 
                   <strong className="text-[#7B3FF2]">
 
-                    15 July
+                    {t("workshops.featuredDate")}
 
                   </strong>
 
@@ -219,13 +208,13 @@ export default function Workshops() {
 
                     <Clock3 size={18} />
 
-                    Duration
+                    {t("workshops.duration")}
 
                   </span>
 
                   <strong className="text-[#52C24E]">
 
-                    2 Days
+                    {t("workshops.featuredDuration")}
 
                   </strong>
 
@@ -237,13 +226,13 @@ export default function Workshops() {
 
                     <Globe2 size={18} />
 
-                    Mode
+                    {t("workshops.mode")}
 
                   </span>
 
                   <strong className="text-[#0B55B7]">
 
-                    Live Online
+                    {t("workshops.featuredMode")}
 
                   </strong>
 
@@ -255,13 +244,13 @@ export default function Workshops() {
 
                     <BadgeCheck size={18} />
 
-                    Certificate
+                    {t("workshops.certificate")}
 
                   </span>
 
                   <strong className="text-[#FF8A00]">
 
-                    Included
+                    {t("workshops.included")}
 
                   </strong>
 
@@ -283,9 +272,7 @@ export default function Workshops() {
             viewport={{ once:true }}
             className="text-center text-3xl font-bold sm:text-4xl"
           >
-            <span className="text-[#7B3FF2]">Explore </span>
-            <span className="text-[#0B55B7]">Workshop </span>
-            <span className="text-[#52C24E]">Categories</span>
+            <TextSegments segments={t("workshops.categoriesTitle")} />
           </motion.h3>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -320,8 +307,7 @@ export default function Workshops() {
 
                   <p className={`mt-3 leading-7 font-medium ${item.descColor}`}>
 
-                    Interactive workshops designed
-                    around real classroom experience.
+                    {t("workshops.categoryDesc")}
 
                   </p>
 
@@ -346,20 +332,15 @@ export default function Workshops() {
           >
 
             <p className="font-semibold tracking-[0.25em] uppercase text-violet-600">
-              Upcoming Workshops
+              {t("workshops.upcomingLabel")}
             </p>
 
             <h3 className="mt-4 text-3xl font-bold sm:text-4xl">
-              <span className="text-[#7B3FF2]">Learn with our </span>
-              <span className="text-[#0B55B7]">live interactive </span>
-              <span className="text-[#FF8A00]">sessions</span>
+              <TextSegments segments={t("workshops.upcomingTitle")} />
             </h3>
 
             <p className="mx-auto mt-5 max-w-3xl text-lg leading-8 font-medium">
-              <span className="text-[#7B3FF2]">Every workshop combines practical activities, </span>
-              <span className="text-[#0B55B7]">discussion, demonstrations </span>
-              <span className="text-[#52C24E]">and live interaction to help you confidently </span>
-              <span className="text-[#FF8A00]">implement Montessori principles.</span>
+              <TextSegments segments={t("workshops.upcomingDesc")} />
             </p>
 
           </motion.div>
@@ -405,7 +386,7 @@ export default function Workshops() {
 
                       <span className="text-[#7B3FF2] font-medium">
 
-                        Date
+                        {t("workshops.date")}
 
                       </span>
 
@@ -421,7 +402,7 @@ export default function Workshops() {
 
                       <span className="text-[#FF8A00] font-medium">
 
-                        Duration
+                        {t("workshops.duration")}
 
                       </span>
 
@@ -437,7 +418,7 @@ export default function Workshops() {
 
                       <span className="text-[#0B55B7] font-medium">
 
-                        Mode
+                        {t("workshops.mode")}
 
                       </span>
 
@@ -453,7 +434,7 @@ export default function Workshops() {
 
                   <button className="mt-10 w-full rounded-full bg-violet-600 py-4 font-semibold text-white transition group-hover:bg-[#0B55B7]">
 
-                    Register Now
+                    {t("workshops.registerNow")}
 
                   </button>
 
@@ -486,15 +467,13 @@ export default function Workshops() {
                 className="text-3xl font-bold sm:text-4xl"
               >
 
-                Why Attend Our Workshops?
+                {t("workshops.whyTitle")}
 
               </motion.h3>
 
               <p className="mt-6 text-lg leading-8 text-white/90">
 
-                Learn directly from experienced Montessori educators through
-                practical demonstrations, interactive activities and real
-                classroom discussions.
+                {t("workshops.whyDesc")}
 
               </p>
 
@@ -502,12 +481,7 @@ export default function Workshops() {
 
             <div className="grid gap-5 sm:grid-cols-2">
 
-              {[
-                "Live Q&A Sessions",
-                "Hands-on Activities",
-                "Certificate Included",
-                "Interactive Learning",
-              ].map((item, index) => (
+              {t("workshops.whyItems").map((item, index) => (
 
                 <motion.div
                   key={index}
@@ -555,17 +529,13 @@ export default function Workshops() {
 
           <h2 className="text-3xl font-bold sm:text-4xl md:text-5xl">
 
-            <span className="text-[#7B3FF2]">Ready to Join </span>
-            <span className="text-[#0B55B7]">Our Next </span>
-            <span className="text-[#52C24E]">Workshop?</span>
+            <TextSegments segments={t("workshops.ctaTitle")} />
 
           </h2>
 
           <p className="mx-auto mt-6 max-w-3xl text-lg leading-8 font-medium">
 
-            <span className="text-[#7B3FF2]">Reserve your seat today </span>
-            <span className="text-[#0B55B7]">and become part of a growing community </span>
-            <span className="text-[#FF8A00]">of Montessori educators.</span>
+            <TextSegments segments={t("workshops.ctaDesc")} />
 
           </p>
 
@@ -579,7 +549,7 @@ export default function Workshops() {
             className="mt-10 rounded-full bg-gradient-to-r from-orange-500 via-orange-400 to-yellow-400 px-10 py-5 text-lg font-semibold text-white shadow-2xl"
           >
 
-            Reserve Your Seat
+            {t("workshops.reserveSeat")}
 
           </motion.button>
 

@@ -8,10 +8,13 @@ import {
   HeartHandshake,
   ArrowRight,
 } from "lucide-react";
+import { useLanguage, TextSegments } from "../i18n/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function About() {
+  const { t } = useLanguage();
+  const featureTexts = t("about.features");
   const aboutGridRef = useRef(null);
   const aboutLeftRef = useRef(null);
   const aboutRightRef = useRef(null);
@@ -19,24 +22,24 @@ export default function About() {
   const features = [
     {
       icon: GraduationCap,
-      title: "Certified Programs",
-      desc: "Professional Montessori teacher training and internationally recognized certification courses.",
+      title: featureTexts[0].title,
+      desc: featureTexts[0].desc,
       color: "from-violet-500 to-violet-600",
       titleColor: "text-[#7B3FF2]",
       descColor: "text-[#0B55B7]",
     },
     {
       icon: HeartHandshake,
-      title: "Practical Learning",
-      desc: "Hands-on workshops and real classroom strategies designed for modern educators.",
+      title: featureTexts[1].title,
+      desc: featureTexts[1].desc,
       color: "from-orange-400 to-orange-500",
       titleColor: "text-[#FF8A00]",
       descColor: "text-[#52C24E]",
     },
     {
       icon: Globe2,
-      title: "Global Community",
-      desc: "Supporting teachers, schools, parents and caregivers across different countries.",
+      title: featureTexts[2].title,
+      desc: featureTexts[2].desc,
       color: "from-green-500 to-emerald-500",
       titleColor: "text-[#52C24E]",
       descColor: "text-[#7B3FF2]",
@@ -121,19 +124,7 @@ export default function About() {
 
           <h2 className="mt-6 text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
 
-            <span className="text-[#FF8A00]">The Heart Behind </span>
-
-            <span className="text-[#7B3FF2]">
-              The
-            </span>{" "}
-
-            <span className="text-[#0B55B7]">
-               Montessori
-            </span>{" "}
-
-            <span className="text-[#52C24E]">
-              Castle
-            </span>
+            <TextSegments segments={t("about.title")} />
 
           </h2>
 
@@ -141,10 +132,7 @@ export default function About() {
             className="max-w-3xl mx-auto mt-6 text-base sm:text-lg md:text-xl leading-7 sm:leading-8 font-bold tracking-wide fade-up"
             style={{ animationDelay: '0.15s', fontFamily: "'Baloo 2', cursive", fontWeight: 700 }}
           >
-            <span className="text-[#7B3FF2]">We are passionate about empowering aspiring and professional educators </span>
-            <span className="text-[#0B55B7]">through high-quality Montessori teacher training, </span>
-            <span className="text-[#52C24E]">internationally recognized certification programs, </span>
-            <span className="text-[#FF8A00]">and practical learning experiences.</span>
+            <TextSegments segments={t("about.intro")} />
           </p>
 
         </div>
@@ -159,47 +147,35 @@ export default function About() {
 
 
             <h3 className="mt-4 text-3xl font-bold leading-tight">
-              <span className="text-[#7B3FF2]">Inspiring educators </span>
-              <span className="text-[#0B55B7]">to create </span>
-              <span className="text-[#52C24E]">brighter childhoods.</span>
+              <TextSegments segments={t("about.leftTitle")} />
             </h3>
 
             <p
               className="mt-6 text-base sm:text-lg md:text-xl leading-7 sm:leading-8 font-bold tracking-wide"
               style={{ fontFamily: "'Baloo 2', cursive", fontWeight: 700 }}
             >
-              <span className="text-[#7B3FF2]">The Montessori Castle </span>
-              <span className="text-[#0B55B7]">is a training institute where we empower teachers, parents, and caregivers </span>
-              <span className="text-[#52C24E]">with practical Montessori education, child development knowledge, </span>
-              <span className="text-[#FF8A00]">and compassionate guidance. </span>
-              <span className="text-[#7B3FF2]">Through our courses, workshops, and supportive community, </span>
-              <span className="text-[#0B55B7]">we help adults create nurturing environments where every child can grow </span>
-              <span className="text-[#52C24E]">with confidence, independence, curiosity, </span>
-              <span className="text-[#FF8A00]">and a lifelong love of learning.</span>
+              <TextSegments segments={t("about.p1")} />
             </p>
 
             <p
               className="mt-5 text-base sm:text-lg md:text-xl leading-7 sm:leading-8 font-bold tracking-wide"
               style={{ fontFamily: "'Baloo 2', cursive", fontWeight: 700 }}
             >
-              <span className="text-[#FF8A00]">What started as a small educational initiative </span>
-              <span className="text-[#7B3FF2]">has grown into a trusted learning community </span>
-              <span className="text-[#0B55B7]">that provides online courses, workshops, certifications, </span>
-              <span className="text-[#52C24E]">and valuable teaching resources for educators around the world.</span>
+              <TextSegments segments={t("about.p2")} />
             </p>
 
             <div className="mt-8 flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
 
               <button className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-violet-600 px-7 py-3 font-semibold text-white shadow-lg transition hover:bg-violet-700 sm:w-auto">
 
-                Learn More
+                {t("about.learnMore")}
 
-                <ArrowRight size={18} />
+                <ArrowRight size={18} className="rtl:rotate-180" />
 
               </button>
 
               <button className="inline-flex w-full items-center justify-center rounded-full border-2 border-violet-200 px-7 py-3 font-semibold text-violet-700 transition hover:bg-violet-50 sm:w-auto">
-                Our Courses
+                {t("about.ourCourses")}
               </button>
 
             </div>
@@ -224,15 +200,11 @@ export default function About() {
               </div>
 
               <h3 className="mt-8 text-center text-3xl font-bold">
-                <span className="text-[#7B3FF2]">Our </span>
-                <span className="text-[#0B55B7]">Mission</span>
+                <TextSegments segments={t("about.missionTitle")} />
               </h3>
 
               <p className="mt-5 text-center leading-8 font-medium">
-                <span className="text-[#7B3FF2]">To empower educators with practical Montessori knowledge, </span>
-                <span className="text-[#0B55B7]">internationally recognized certification programs, </span>
-                <span className="text-[#52C24E]">and continuous professional development </span>
-                <span className="text-[#FF8A00]">that positively impacts children, families, and communities.</span>
+                <TextSegments segments={t("about.mission")} />
               </p>
 
               <div className="grid grid-cols-2 gap-5 mt-10">
@@ -242,7 +214,7 @@ export default function About() {
                     2500+
                   </h4>
                   <p className="mt-2 text-sm font-medium text-[#0B55B7]">
-                    Teachers Trained
+                    {t("about.teachersTrained")}
                   </p>
                 </div>
 
@@ -251,7 +223,7 @@ export default function About() {
                     15+
                   </h4>
                   <p className="mt-2 text-sm font-medium text-[#FF8A00]">
-                    Years Experience
+                    {t("about.yearsExperience")}
                   </p>
                 </div>
 

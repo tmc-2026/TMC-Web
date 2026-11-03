@@ -17,69 +17,112 @@ import {
   BadgeCheck,
 } from "lucide-react";
 import certificateWoman from "../assets/certificate-woman.png";
+import { useLanguage, TextSegments } from "../i18n/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const courses = [
+const courseMeta = [
   {
-    title: "Assistant Course",
-    duration: "1 Month",
     price: "SAR 1,000",
-    badge: "Beginner",
     color: "from-violet-500 to-purple-600",
     bg: "from-violet-50 to-purple-50",
     icon: GraduationCap,
     titleColor: "text-[#7B3FF2]",
     textColor: "text-[#0B55B7]",
-    points: [
-      "Introduction to Montessori",
-      "Child Development Basics",
-      "Learning Environment",
-      "Practical Activities",
-    ],
   },
 
   {
-    title: "Orientation Course",
-    subtitle: "Early Childhood Montessori",
-    duration: "1.5 Months",
     price: "SAR 2,000",
-    badge: "Most Popular",
     color: "from-orange-500 to-amber-500",
     bg: "from-orange-50 to-yellow-50",
     featured: true,
     icon: BookOpen,
     titleColor: "text-[#FF8A00]",
     textColor: "text-[#7B3FF2]",
-    points: [
-      "Montessori Philosophy",
-      "Activity Planning",
-      "Child Observation",
-      "Prepared Classroom",
-    ],
   },
 
   {
-    title: "Teacher Comprehensive",
-    subtitle: "Montessori Certification",
-    duration: "3 Months",
     price: "SAR 3,000",
-    badge: "Professional",
     color: "from-green-500 to-emerald-600",
     bg: "from-green-50 to-emerald-50",
     icon: Award,
     titleColor: "text-[#52C24E]",
     textColor: "text-[#0B55B7]",
-    points: [
-      "Complete Montessori Training",
-      "Teaching Practice",
-      "Professional Assessment",
-      "Certification Included",
-    ],
+  },
+];
+
+const flexMeta = [
+  {
+    icon: Clock3,
+    color: "bg-violet-100",
+    iconColor: "text-violet-600",
+    titleColor: "text-[#7B3FF2]",
+    descColor: "text-[#0B55B7]",
+  },
+  {
+    icon: BookOpen,
+    color: "bg-orange-100",
+    iconColor: "text-orange-500",
+    titleColor: "text-[#FF8A00]",
+    descColor: "text-[#52C24E]",
+  },
+  {
+    icon: Download,
+    color: "bg-sky-100",
+    iconColor: "text-sky-600",
+    titleColor: "text-[#0B55B7]",
+    descColor: "text-[#7B3FF2]",
+  },
+  {
+    icon: Users,
+    color: "bg-green-100",
+    iconColor: "text-green-600",
+    titleColor: "text-[#52C24E]",
+    descColor: "text-[#FF8A00]",
+  },
+  {
+    icon: GraduationCap,
+    color: "bg-violet-100",
+    iconColor: "text-violet-600",
+    titleColor: "text-[#7B3FF2]",
+    descColor: "text-[#0B55B7]",
+  },
+  {
+    icon: Laptop,
+    color: "bg-orange-100",
+    iconColor: "text-orange-500",
+    titleColor: "text-[#FF8A00]",
+    descColor: "text-[#52C24E]",
+  },
+];
+
+const whoMeta = [
+  {
+    icon: UserCheck,
+    color: "bg-violet-100 text-violet-600",
+    titleColor: "text-[#7B3FF2]",
+  },
+  {
+    icon: Baby,
+    color: "bg-orange-100 text-orange-500",
+    titleColor: "text-[#FF8A00]",
+  },
+  {
+    icon: Users,
+    color: "bg-green-100 text-green-600",
+    titleColor: "text-[#52C24E]",
   },
 ];
 
 export default function Courses() {
+  const { t, lang } = useLanguage();
+  const courseTexts = t("courses.list");
+  const courses = courseMeta.map((meta, i) => ({
+    ...meta,
+    ...courseTexts[i],
+  }));
+  const flexTexts = t("courses.flexCards");
+  const whoItems = t("courses.whoItems");
   const flexCardsRef = useRef(null);
   const certTextRef = useRef(null);
 
@@ -152,14 +195,9 @@ export default function Courses() {
 
 
 <motion.h2 className="text-4xl md:text-5xl font-bold flex flex-wrap justify-center gap-3">
-  {[
-    { text: "Learn.", color: "text-violet-600" },
-    { text: "Grow.", color: "text-[#0B55B7]" },
-    { text: "Get", color: "text-green-600" },
-    { text: "Certified.", color: "text-green-600" },
-  ].map((word, index) => (
+  {t("courses.words").map((word, index) => (
     <motion.span
-      key={word.text}
+      key={index}
       initial={{
         opacity: 0,
         y: -70,
@@ -190,7 +228,7 @@ export default function Courses() {
   ))}
 </motion.h2>
 
-<CoursesTypeWriter />
+<CoursesTypeWriter key={lang} />
 
 
         {/* Cards */}
@@ -216,7 +254,7 @@ export default function Courses() {
               >
                 {course.featured && (
                   <div className="absolute right-5 top-5 rounded-full bg-orange-500 px-4 py-2 text-xs font-semibold text-white shadow-lg">
-                    ⭐ Most Popular
+                    {t("courses.mostPopular")}
                   </div>
                 )}
 
@@ -260,9 +298,9 @@ export default function Courses() {
                 <button
                   className={`mt-10 flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r ${course.color} py-4 font-semibold text-white shadow-lg transition hover:scale-[1.02]`}
                 >
-                  Enroll Now
+                  {t("courses.enrollNow")}
 
-                  <ArrowRight size={18} />
+                  <ArrowRight size={18} className="rtl:rotate-180" />
                 </button>
               </motion.div>
             );
@@ -277,27 +315,18 @@ export default function Courses() {
           <div className="relative z-10 grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <div ref={certTextRef} className="order-2 lg:order-1">
               <h3 className="cert-animate text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
-                <span className="text-[#7B3FF2]">Get Certified </span>
-                <span className="text-[#0B55B7]">by </span>
-                <span className="text-[#52C24E]">TMC</span>
+                <TextSegments segments={t("courses.getCertifiedTitle")} />
               </h3>
 
               <p
                 className="cert-animate mt-5 max-w-xl text-base font-bold leading-7 tracking-wide sm:text-lg sm:leading-8"
                 style={{ fontFamily: "'Baloo 2', cursive", fontWeight: 700 }}
               >
-                <span className="text-[#7B3FF2]">Complete your Montessori training </span>
-                <span className="text-[#0B55B7]">and earn a professional certificate </span>
-                <span className="text-[#52C24E]">that strengthens your teaching career </span>
-                <span className="text-[#FF8A00]">and builds lasting confidence.</span>
+                <TextSegments segments={t("courses.getCertifiedDesc")} />
               </p>
 
               <ul className="mt-8 space-y-4">
-                {[
-                  "Internationally inspired Montessori certification",
-                  "Practical skills you can use in real classrooms",
-                  "A credential trusted by educators worldwide",
-                ].map((item) => (
+                {t("courses.certPoints").map((item) => (
                   <li key={item} className="cert-animate flex items-start gap-3">
                     <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-violet-100 text-[#7B3FF2]">
                       <BadgeCheck size={16} />
@@ -313,8 +342,8 @@ export default function Courses() {
                 rel="noopener noreferrer"
                 className="cert-animate mt-9 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-violet-600 to-indigo-600 px-8 py-4 font-semibold text-white shadow-xl transition hover:scale-[1.02] sm:w-auto"
               >
-                Get Your Certificate
-                <ArrowRight size={18} />
+                {t("courses.getCertificate")}
+                <ArrowRight size={18} className="rtl:rotate-180" />
               </a>
             </div>
 
@@ -375,16 +404,11 @@ export default function Courses() {
     </motion.div>
 
     <h3 className="mt-6 text-3xl font-bold sm:text-4xl">
-      <span className="text-[#7B3FF2]">Flexible </span>
-      <span className="text-[#0B55B7]">Online </span>
-      <span className="text-[#52C24E]">Learning</span>
+      <TextSegments segments={t("courses.flexibleTitle")} />
     </h3>
 
     <p className="mx-auto mt-5 max-w-2xl text-lg leading-8 font-semibold">
-      <span className="text-[#7B3FF2]">Learn from anywhere in the world </span>
-      <span className="text-[#0B55B7]">through engaging lessons, expert guidance, </span>
-      <span className="text-[#52C24E]">downloadable resources, </span>
-      <span className="text-[#FF8A00]">and a schedule designed around you.</span>
+      <TextSegments segments={t("courses.flexibleDesc")} />
     </p>
 
   </div>
@@ -393,63 +417,9 @@ export default function Courses() {
 
   <div ref={flexCardsRef} className="relative z-10 mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
 
-    {[
-      {
-        title: "Study at Your Own Pace",
-        desc: "Access lessons whenever it suits your schedule.",
-        icon: Clock3,
-        color: "bg-violet-100",
-        iconColor: "text-violet-600",
-        titleColor: "text-[#7B3FF2]",
-        descColor: "text-[#0B55B7]",
-      },
-      {
-        title: "Interactive Lessons",
-        desc: "Easy-to-follow sessions designed for real learning.",
-        icon: BookOpen,
-        color: "bg-orange-100",
-        iconColor: "text-orange-500",
-        titleColor: "text-[#FF8A00]",
-        descColor: "text-[#52C24E]",
-      },
-      {
-        title: "Downloadable Resources",
-        desc: "Worksheets, notes and practical learning materials.",
-        icon: Download,
-        color: "bg-sky-100",
-        iconColor: "text-sky-600",
-        titleColor: "text-[#0B55B7]",
-        descColor: "text-[#7B3FF2]",
-      },
-      {
-        title: "Expert Trainer Support",
-        desc: "Get guidance from experienced Montessori educators.",
-        icon: Users,
-        color: "bg-green-100",
-        iconColor: "text-green-600",
-        titleColor: "text-[#52C24E]",
-        descColor: "text-[#FF8A00]",
-      },
-      {
-        title: "Professional Certificate",
-        desc: "Receive a certificate after successful completion.",
-        icon: GraduationCap,
-        color: "bg-violet-100",
-        iconColor: "text-violet-600",
-        titleColor: "text-[#7B3FF2]",
-        descColor: "text-[#0B55B7]",
-      },
-      {
-        title: "Learn Anywhere",
-        desc: "Join classes from home, work or while travelling.",
-        icon: Laptop,
-        color: "bg-orange-100",
-        iconColor: "text-orange-500",
-        titleColor: "text-[#FF8A00]",
-        descColor: "text-[#52C24E]",
-      },
-    ].map((item, index) => {
+    {flexMeta.map((meta, index) => {
 
+      const item = { ...meta, ...flexTexts[index] };
       const Icon = item.icon;
 
       return (
@@ -503,33 +473,13 @@ export default function Courses() {
 
 <div className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-yellow-200/20 blur-3xl"></div>
         <h3 className="relative z-10 text-center text-3xl sm:text-4xl font-bold">
-            <span className="text-[#7B3FF2]">Who </span>
-            <span className="text-[#0B55B7]">Is It </span>
-            <span className="text-[#52C24E]">For?</span>
+            <TextSegments segments={t("courses.whoTitle")} />
           </h3>
 
 
           <div className="mt-12 grid gap-8 md:grid-cols-3">
-            {[
-              {
-                icon: UserCheck,
-                title: "Teachers",
-                color: "bg-violet-100 text-violet-600",
-                titleColor: "text-[#7B3FF2]",
-              },
-              {
-                icon: Baby,
-                title: "Parents & Caregivers",
-                color: "bg-orange-100 text-orange-500",
-                titleColor: "text-[#FF8A00]",
-              },
-              {
-                icon: Users,
-                title: "Aspiring Educators",
-                color: "bg-green-100 text-green-600",
-                titleColor: "text-[#52C24E]",
-              },
-            ].map((item) => {
+            {whoMeta.map((meta, index) => {
+              const item = { ...meta, title: whoItems[index] };
               const Icon = item.icon;
 
               return (
@@ -537,7 +487,7 @@ export default function Courses() {
                   whileHover={{
                     y: -8,
                   }}
-                  key={item.title}
+                  key={index}
                   className="rounded-[30px] bg-white p-8 text-center shadow-lg"
                 >
                   <div
@@ -564,12 +514,11 @@ export default function Courses() {
           className="mt-24 rounded-[28px] bg-gradient-to-r from-violet-600 via-indigo-600 to-orange-500 p-8 text-center text-white shadow-2xl sm:rounded-[40px] sm:p-12"
         >
           <h2 className="text-3xl font-bold sm:text-4xl">
-            Ready to Start Your Montessori Journey?
+            {t("courses.ctaTitle")}
           </h2>
 
           <p className="mx-auto mt-5 max-w-2xl text-lg text-white/90">
-            Limited seats available. Join teachers, parents and aspiring
-            educators learning with The Montessori Castle.
+            {t("courses.ctaDesc")}
           </p>
 
           <a
@@ -578,7 +527,7 @@ export default function Courses() {
             rel="noopener noreferrer"
             className="mt-8 inline-block rounded-full bg-white px-10 py-4 font-semibold text-violet-700 transition hover:scale-105"
           >
-            Register Today
+            {t("courses.registerToday")}
           </a>
         </motion.div>
       </div>
@@ -588,15 +537,8 @@ export default function Courses() {
 }
 
 function CoursesTypeWriter() {
-  const segments = [
-    { text: "Explore our professionally designed ", color: "text-[#7B3FF2]" },
-    { text: "Montessori", color: "text-[#0B55B7]" },
-    { text: " and ", color: "text-[#7B3FF2]" },
-    { text: "Early Childhood Education", color: "text-[#52C24E]" },
-    { text: " programs. Whether you're beginning your journey or becoming a ", color: "text-[#0B55B7]" },
-    { text: "certified Montessori educator", color: "text-[#FF8A00]" },
-    { text: ", we have the perfect course for you.", color: "text-[#7B3FF2]" },
-  ];
+  const { t } = useLanguage();
+  const segments = t("courses.typewriter");
 
   const fullText = segments.map((s) => s.text).join("");
   const [charCount, setCharCount] = useState(0);

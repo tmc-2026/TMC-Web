@@ -1,23 +1,25 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import logo from "../assets/logo.png";
+import { useLanguage } from "../i18n/LanguageContext";
 
 const INSTAGRAM_URL = "https://www.instagram.com/themontessoricastle_/";
 const FACEBOOK_URL = "https://www.facebook.com/share/1QM6LmGPzz/?mibextid=wwXIfr";
 const WHATSAPP_URL = "https://wa.me/966511247864";
 
 const Navbar = () => {
+  const { t, lang, setLang, isRtl } = useLanguage();
   const [mobileMenu, setMobileMenu] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [hasClicked, setHasClicked] = useState(false);
 
   const navLinks = [
-    { title: "Home", href: "#home" },
-    { title: "About Us", href: "#about" },
-    { title: "Courses", href: "#courses" },
-    { title: "Workshops", href: "#workshops" },
-    { title: "Why TMC", href: "#why" },
-    { title: "Contact Us", href: "#contact" },
+    { title: t("nav.home"), href: "#home" },
+    { title: t("nav.about"), href: "#about" },
+    { title: t("nav.courses"), href: "#courses" },
+    { title: t("nav.workshops"), href: "#workshops" },
+    { title: t("nav.why"), href: "#why" },
+    { title: t("nav.contact"), href: "#contact" },
   ];
 
   useEffect(() => {
@@ -64,6 +66,50 @@ const Navbar = () => {
     setHasClicked(true);
   };
 
+  const LangToggle = ({ className = "" }) => (
+    <div
+      className={`inline-flex items-center rounded-full border border-violet-200 bg-violet-50/80 p-0.5 text-xs font-bold ${className}`}
+      role="group"
+      aria-label="Language"
+    >
+      <button
+        type="button"
+        onClick={() => setLang("en")}
+        className={`rounded-full px-2.5 py-1.5 transition ${
+          lang === "en"
+            ? "bg-violet-600 text-white shadow-sm"
+            : "text-violet-700 hover:bg-white/70"
+        }`}
+      >
+        {t("nav.langEn")}
+      </button>
+      <button
+        type="button"
+        onClick={() => setLang("ar")}
+        className={`rounded-full px-2.5 py-1.5 transition ${
+          lang === "ar"
+            ? "bg-violet-600 text-white shadow-sm"
+            : "text-violet-700 hover:bg-white/70"
+        }`}
+      >
+        {t("nav.langAr")}
+      </button>
+    </div>
+  );
+
+  const BrandName = ({ className = "" }) => (
+    <h2
+      className={className}
+      style={{ fontFamily: "'Baloo 2', cursive" }}
+      dir="ltr"
+      lang="en"
+    >
+      <span className="text-[#7B3FF2]">The</span>{" "}
+      <span className="text-[#0B55B7]">Montessori</span>{" "}
+      <span className="text-[#52C24E]">Castle</span>
+    </h2>
+  );
+
   return (
     <>
       <header
@@ -78,14 +124,7 @@ const Navbar = () => {
               alt="TMC Logo"
               className="h-12 w-12 shrink-0 object-contain sm:h-16 sm:w-16"
             />
-            <h2
-              className="truncate text-[18px] font-semibold leading-tight sm:text-[20px] lg:text-[28px] lg:whitespace-nowrap"
-              style={{ fontFamily: "'Baloo 2', cursive" }}
-            >
-              <span className="text-[#7B3FF2]">The</span>{" "}
-              <span className="text-[#0B55B7]">Montessori</span>{" "}
-              <span className="text-[#52C24E]">Castle</span>
-            </h2>
+            <BrandName className="truncate text-[18px] font-semibold leading-tight sm:text-[20px] lg:text-[28px] lg:whitespace-nowrap" />
           </div>
 
           <nav className="ml-4 hidden items-center gap-2 xl:gap-6 lg:flex">
@@ -93,7 +132,7 @@ const Navbar = () => {
               .filter((item) => item.href !== "#contact")
               .map((item) => (
                 <a
-                  key={item.title}
+                  key={item.href}
                   href={item.href}
                   onClick={handleNavClick}
                   className="whitespace-nowrap rounded-full px-3 py-2 font-semibold text-gray-600 transition-all duration-300 hover:bg-violet-50 hover:text-violet-600 xl:px-5 xl:py-3"
@@ -103,27 +142,30 @@ const Navbar = () => {
               ))}
           </nav>
 
-          <a
-            href="#contact"
-            onClick={handleNavClick}
-            className="hidden rounded-full bg-gradient-to-r from-orange-500 to-red-400 px-6 py-3 font-semibold text-white shadow-xl transition duration-300 hover:scale-105 lg:block xl:px-8"
-          >
-            Contact Us
-          </a>
+          <div className="flex items-center gap-2 sm:gap-3">
+            <LangToggle className="shrink-0" />
 
-          <button
-            type="button"
-            onClick={() => setMobileMenu(true)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-xl text-[#7B3FF2] transition hover:bg-violet-50 lg:hidden"
-            aria-label="Open menu"
-            aria-expanded={mobileMenu}
-          >
-            <Menu size={28} strokeWidth={2.5} />
-          </button>
+            <a
+              href="#contact"
+              onClick={handleNavClick}
+              className="hidden rounded-full bg-gradient-to-r from-orange-500 to-red-400 px-6 py-3 font-semibold text-white shadow-xl transition duration-300 hover:scale-105 lg:block xl:px-8"
+            >
+              {t("nav.contact")}
+            </a>
+
+            <button
+              type="button"
+              onClick={() => setMobileMenu(true)}
+              className="inline-flex h-11 w-11 items-center justify-center rounded-xl text-[#7B3FF2] transition hover:bg-violet-50 lg:hidden"
+              aria-label={t("nav.openMenu")}
+              aria-expanded={mobileMenu}
+            >
+              <Menu size={28} strokeWidth={2.5} />
+            </button>
+          </div>
         </div>
       </header>
 
-      {/* Backdrop */}
       <div
         className={`fixed inset-0 z-[70] bg-black/40 transition-opacity duration-300 lg:hidden ${
           mobileMenu ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
@@ -132,30 +174,28 @@ const Navbar = () => {
         aria-hidden="true"
       />
 
-      {/* Left slide-out panel */}
       <aside
-        className={`fixed top-0 left-0 z-[80] flex h-full w-[min(86vw,320px)] flex-col bg-white shadow-2xl transition-transform duration-300 ease-out lg:hidden ${
-          mobileMenu ? "translate-x-0" : "-translate-x-full"
+        className={`fixed top-0 z-[80] flex h-full w-[min(86vw,320px)] flex-col bg-white shadow-2xl transition-transform duration-300 ease-out lg:hidden ${
+          isRtl ? "right-0" : "left-0"
+        } ${
+          mobileMenu
+            ? "translate-x-0"
+            : isRtl
+              ? "translate-x-full"
+              : "-translate-x-full"
         }`}
         aria-hidden={!mobileMenu}
       >
         <div className="flex items-center justify-between border-b border-violet-100 px-5 py-4">
           <div className="flex items-center gap-2">
             <img src={logo} alt="" className="h-10 w-10 object-contain" />
-            <p
-              className="text-sm font-semibold leading-tight"
-              style={{ fontFamily: "'Baloo 2', cursive" }}
-            >
-              <span className="text-[#7B3FF2]">The</span>{" "}
-              <span className="text-[#0B55B7]">Montessori</span>{" "}
-              <span className="text-[#52C24E]">Castle</span>
-            </p>
+            <BrandName className="text-sm font-semibold leading-tight" />
           </div>
           <button
             type="button"
             onClick={() => setMobileMenu(false)}
             className="inline-flex h-10 w-10 items-center justify-center rounded-xl text-slate-600 transition hover:bg-violet-50 hover:text-violet-600"
-            aria-label="Close menu"
+            aria-label={t("nav.closeMenu")}
           >
             <X size={24} />
           </button>
@@ -164,7 +204,7 @@ const Navbar = () => {
         <nav className="flex-1 overflow-y-auto px-4 py-6">
           <ul className="space-y-1">
             {navLinks.map((item) => (
-              <li key={item.title}>
+              <li key={item.href}>
                 <a
                   href={item.href}
                   onClick={handleNavClick}
@@ -179,7 +219,7 @@ const Navbar = () => {
 
         <div className="border-t border-violet-100 px-5 py-6">
           <p className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-[#7B3FF2]">
-            Follow us
+            {t("nav.followUs")}
           </p>
           <div className="flex items-center gap-3">
             <a

@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import heroImage from "../assets/heroimage.png";
+import { useLanguage, TextSegments } from "../i18n/LanguageContext";
 import {
   ArrowRight,
   GraduationCap,
@@ -15,6 +16,7 @@ import {
 gsap.registerPlugin(ScrollTrigger);
 
 const Home = () => {
+  const { t, lang } = useLanguage();
   const heroSectionRef = useRef(null);
   const heroLeftRef = useRef(null);
   const heroRightRef = useRef(null);
@@ -22,22 +24,23 @@ const Home = () => {
   const introLeftRef = useRef(null);
   const introRightRef = useRef(null);
 
+  const highlightTitles = t("home.highlights");
   const highlights = [
   {
     icon: GraduationCap,
-    title: "Hands-on Montessori Training",
+    title: highlightTitles[0],
     color: "bg-violet-100",
     iconColor: "text-violet-600",
   },
   {
     icon: BookOpen,
-    title: "Flexible Learning for Parents & Teachers",
+    title: highlightTitles[1],
     color: "bg-orange-100",
     iconColor: "text-orange-500",
   },
   {
     icon: HeartHandshake,
-    title: "Supportive Guidance from Experienced Educators",
+    title: highlightTitles[2],
     color: "bg-green-100",
     iconColor: "text-green-600",
   },
@@ -111,11 +114,11 @@ const Home = () => {
 
         <div className="relative z-10 mx-auto max-w-6xl px-6 lg:px-8">
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-            <div ref={heroLeftRef} className="flex flex-col items-start text-left">
+            <div ref={heroLeftRef} className="flex flex-col items-start text-start">
               <h1 className="max-w-xl text-[28px] font-extrabold leading-[1.35] tracking-tight md:text-[34px] lg:text-[38px] headline-animate">
-                <span className="text-[#52C24E]">Making world a better place.</span>
+                <span className="text-[#52C24E]">{t("home.line1")}</span>
                 <br />
-                <span className="text-[#FF8A00]">Start your educational journey at </span>
+                <span className="text-[#FF8A00]">{t("home.line2")}</span>
                 <span className="text-[#7B3FF2]">The</span>{" "}
                 <span className="text-[#0B55B7]">Montessori</span>{" "}
                 <span className="text-[#52C24E]">Castle</span>
@@ -126,8 +129,8 @@ const Home = () => {
                   href="#courses"
                   className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-violet-600 px-8 py-4 font-semibold text-white shadow-xl transition hover:bg-violet-700 sm:w-auto"
                 >
-                  Explore Courses
-                  <ArrowRight size={20} />
+                  {t("home.exploreCourses")}
+                  <ArrowRight size={20} className="rtl:rotate-180" />
                 </a>
 
                 <a
@@ -136,7 +139,7 @@ const Home = () => {
                   rel="noopener noreferrer"
                   className="inline-flex w-full items-center justify-center rounded-full border-2 border-violet-300 px-8 py-4 text-center font-semibold text-violet-600 transition hover:bg-violet-50 sm:w-auto"
                 >
-                  Talk to an Advisor
+                  {t("home.talkAdvisor")}
                 </a>
               </div>
             </div>
@@ -177,11 +180,11 @@ const Home = () => {
       <div>
 
         <h4 className="text-sm font-bold sm:text-[1.1rem]">
-          Certified
+          {t("home.badgeCertified")}
         </h4>
 
         <p className="text-[0.7rem] text-gray-500 sm:text-[0.825rem]">
-          Courses
+          {t("home.badgeCourses")}
         </p>
 
       </div>
@@ -211,7 +214,7 @@ const Home = () => {
         </h4>
 
         <p className="text-[0.7rem] text-gray-500 sm:text-[0.825rem]">
-          Teachers
+          {t("home.badgeTeachers")}
         </p>
 
       </div>
@@ -237,11 +240,11 @@ const Home = () => {
       <div>
 
         <h4 className="text-sm font-bold sm:text-[1.1rem]">
-          Practical
+          {t("home.badgePractical")}
         </h4>
 
         <p className="text-[0.7rem] text-gray-500 sm:text-[0.825rem]">
-          Learning
+          {t("home.badgeLearning")}
         </p>
 
       </div>
@@ -267,11 +270,11 @@ const Home = () => {
       <div>
 
         <h4 className="text-sm font-bold sm:text-[1.1rem]">
-          Global
+          {t("home.badgeGlobal")}
         </h4>
 
         <p className="text-[0.7rem] text-gray-500 sm:text-[0.825rem]">
-          Community
+          {t("home.badgeCommunity")}
         </p>
 
       </div>
@@ -311,15 +314,10 @@ const Home = () => {
 <h2
   className="mt-6 text-3xl font-bold leading-tight sm:text-4xl"
 >
-  <span className="text-[#7B3FF2]">A calm, </span>
-  <span className="text-[#0B55B7]">practical path</span>
-  <br />
-  <span className="text-[#FF8A00]">into </span>
-  <span className="text-[#52C24E]">Montessori </span>
-  <span className="text-[#7B3FF2]">learning.</span>
+  <TextSegments segments={t("home.introTitle")} breakAfterIndexes={[1]} />
 </h2>
 
-    <TypeWriter />
+    <TypeWriter key={lang} />
 
       </div>
 
@@ -376,23 +374,8 @@ const Home = () => {
 };
 
 function TypeWriter() {
-  const segments = [
-    { text: "We believe learning should be ", color: "text-[#7B3FF2]" },
-    { text: "inspiring", color: "text-[#FF8A00]" },
-    { text: ", ", color: "text-[#7B3FF2]" },
-    { text: "practical", color: "text-[#0B55B7]" },
-    { text: " and ", color: "text-[#7B3FF2]" },
-    { text: "accessible", color: "text-[#52C24E]" },
-    { text: ". Every course is designed to help ", color: "text-[#0B55B7]" },
-    { text: "teachers", color: "text-[#7B3FF2]" },
-    { text: ", ", color: "text-[#0B55B7]" },
-    { text: "parents", color: "text-[#FF8A00]" },
-    { text: " and ", color: "text-[#0B55B7]" },
-    { text: "caregivers", color: "text-[#52C24E]" },
-    { text: " build confidence through real-world ", color: "text-[#0B55B7]" },
-    { text: "Montessori", color: "text-[#7B3FF2]" },
-    { text: " knowledge.", color: "text-[#52C24E]" },
-  ];
+  const { t } = useLanguage();
+  const segments = t("home.typewriter");
 
   const fullText = segments.map((s) => s.text).join("");
   const [charCount, setCharCount] = useState(0);

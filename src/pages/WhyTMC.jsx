@@ -8,13 +8,11 @@ import {
 } from "lucide-react";
 
 import TmcVid from "../assets/TmcVid.mp4";
+import { useLanguage, TextSegments } from "../i18n/LanguageContext";
 
-const features = [
+const featureMeta = [
   {
     icon: GraduationCap,
-    title: "Experienced Montessori Trainers",
-    description:
-      "Learn directly from passionate educators with years of Montessori classroom experience.",
     bg: "bg-violet-100",
     iconColor: "text-violet-600",
     titleColor: "text-[#7B3FF2]",
@@ -23,9 +21,6 @@ const features = [
 
   {
     icon: Globe2,
-    title: "Flexible Online Learning",
-    description:
-      "Study from anywhere in the world at your own pace with complete flexibility.",
     bg: "bg-sky-100",
     iconColor: "text-sky-600",
     titleColor: "text-[#0B55B7]",
@@ -34,9 +29,6 @@ const features = [
 
   {
     icon: Award,
-    title: "Professional Certification",
-    description:
-      "Receive recognized certificates that strengthen your teaching career.",
     bg: "bg-green-100",
     iconColor: "text-green-600",
     titleColor: "text-[#52C24E]",
@@ -45,9 +37,6 @@ const features = [
 
   {
     icon: Users,
-    title: "Supportive Learning Community",
-    description:
-      "Become part of a growing community of educators, parents and future teachers.",
     bg: "bg-orange-100",
     iconColor: "text-orange-500",
     titleColor: "text-[#FF8A00]",
@@ -56,6 +45,14 @@ const features = [
 ];
 
 const WhyTMC = () => {
+  const { t } = useLanguage();
+  const featureTexts = t("why.features");
+  const features = featureMeta.map((meta, i) => ({
+    ...meta,
+    title: featureTexts[i]?.title,
+    description: featureTexts[i]?.description,
+  }));
+
   return (
   <section
   id="why"
@@ -100,17 +97,17 @@ const WhyTMC = () => {
             >
 
          <span className="text-violet-600">
-Why Educators
+{t("why.titleWhy")}
 </span>
 
 <br/>
 
 <span className="text-[#0B55B7]">
-Choose
+{t("why.titleChoose")}
 </span>{" "}
 
 <span className="text-[#52C24E]">
-TMC
+{t("why.titleTmc")}
 </span>
 
             </motion.h2>
@@ -133,12 +130,7 @@ TMC
               }}
               className="mt-8 max-w-xl text-lg leading-8 font-medium"
             >
-              <span className="text-[#7B3FF2]">At The Montessori Castle, </span>
-              <span className="text-[#0B55B7]">we believe every educator deserves practical, engaging </span>
-              <span className="text-[#52C24E]">and internationally inspired Montessori training. </span>
-              <span className="text-[#FF8A00]">Our programs empower teachers, assistants and parents </span>
-              <span className="text-[#7B3FF2]">with the confidence to create meaningful learning experiences </span>
-              <span className="text-[#0B55B7]">for every child.</span>
+              <TextSegments segments={t("why.intro")} />
             </motion.p>
 
             {/* Cards */}
@@ -216,9 +208,9 @@ TMC
               className="mt-10 flex items-center gap-3 rounded-full bg-gradient-to-r from-violet-600 to-blue-600 px-8 py-4 font-semibold text-white shadow-xl"
             >
 
-              Start Learning Today
+              {t("why.startLearning")}
 
-              <ArrowRight size={20} />
+              <ArrowRight size={20} className="rtl:rotate-180" />
 
             </motion.button>
 
@@ -329,15 +321,13 @@ TMC
               className="text-3xl font-bold text-white sm:text-4xl"
             >
 
-              Your Montessori Journey Starts Here.
+              {t("why.journeyTitle")}
 
             </motion.h2>
 
             <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-white/90">
 
-              Join aspiring teachers, assistants and parents who are
-              transforming early childhood education through practical
-              Montessori learning.
+              {t("why.journeyDesc")}
 
             </p>
 
@@ -352,9 +342,9 @@ TMC
 
             >
 
-              Explore Our Courses
+              {t("why.exploreCourses")}
 
-              <ArrowRight size={20} />
+              <ArrowRight size={20} className="rtl:rotate-180" />
 
             </motion.button>
 

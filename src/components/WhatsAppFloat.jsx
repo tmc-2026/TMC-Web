@@ -1,13 +1,19 @@
+import { useLanguage } from "../i18n/LanguageContext";
+
 const WHATSAPP_URL = "https://wa.me/966511247864";
 
 export default function WhatsAppFloat() {
+  const { t, isRtl } = useLanguage();
+
   return (
     <a
       href={WHATSAPP_URL}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="Chat with The Montessori Castle on WhatsApp"
-      className="group fixed bottom-6 right-6 z-[60] flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_10px_30px_rgba(37,211,102,0.45)] transition duration-300 hover:scale-110 hover:bg-[#1ebe57] md:bottom-8 md:right-8 md:h-16 md:w-16"
+      aria-label={t("whatsapp")}
+      className={`group fixed bottom-6 z-[60] flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_10px_30px_rgba(37,211,102,0.45)] transition duration-300 hover:scale-110 hover:bg-[#1ebe57] md:bottom-8 md:h-16 md:w-16 ${
+        isRtl ? "left-6 md:left-8" : "right-6 md:right-8"
+      }`}
     >
       <span className="absolute inset-0 animate-ping rounded-full bg-[#25D366]/40" />
       <svg
