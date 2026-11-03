@@ -14,7 +14,9 @@ import {
   Users,
   Baby,
   ArrowRight,
+  BadgeCheck,
 } from "lucide-react";
+import certificateWoman from "../assets/certificate-woman.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -79,35 +81,57 @@ const courses = [
 
 export default function Courses() {
   const flexCardsRef = useRef(null);
+  const certTextRef = useRef(null);
 
   useEffect(() => {
     const grid = flexCardsRef.current;
-    if (!grid) return;
+    const certText = certTextRef.current;
 
-    const cards = grid.querySelectorAll(".flex-learn-card");
     const ctx = gsap.context(() => {
-      gsap.set(cards, {
-        y: 40,
-        opacity: 0,
-        scale: 0.92,
-        rotation: (i) => (i % 2 === 0 ? -8 : 8),
-      });
+      if (grid) {
+        const cards = grid.querySelectorAll(".flex-learn-card");
 
-      gsap.to(cards, {
-        y: 0,
-        opacity: 1,
-        scale: 1,
-        rotation: 0,
-        duration: 1,
-        stagger: 0.14,
-        ease: "power2.out",
-        scrollTrigger: {
-          trigger: grid,
-          start: "top 80%",
-          toggleActions: "restart none restart none",
-        },
-      });
-    }, grid);
+        gsap.set(cards, {
+          y: 40,
+          opacity: 0,
+          scale: 0.92,
+          rotation: (i) => (i % 2 === 0 ? -8 : 8),
+        });
+
+        gsap.to(cards, {
+          y: 0,
+          opacity: 1,
+          scale: 1,
+          rotation: 0,
+          duration: 1,
+          stagger: 0.14,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: grid,
+            start: "top 80%",
+            toggleActions: "restart none restart none",
+          },
+        });
+      }
+
+      if (certText) {
+        const items = certText.querySelectorAll(".cert-animate");
+
+        gsap.set(items, { x: -70, opacity: 0 });
+        gsap.to(items, {
+          x: 0,
+          opacity: 1,
+          duration: 0.85,
+          stagger: 0.16,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: certText,
+            start: "top 80%",
+            toggleActions: "restart none restart none",
+          },
+        });
+      }
+    });
 
     return () => ctx.revert();
   }, []);
@@ -245,6 +269,74 @@ export default function Courses() {
           })}
         </div>
 
+        {/* Get Certified */}
+        <div className="relative mt-24 overflow-hidden rounded-[28px] bg-gradient-to-br from-[#FFF8E8] via-white to-[#EEF8FF] px-5 py-12 sm:rounded-[40px] sm:px-10 sm:py-16 lg:px-14">
+          <div className="absolute -left-16 top-10 h-64 w-64 rounded-full bg-violet-200/30 blur-3xl" />
+          <div className="absolute -right-10 bottom-0 h-72 w-72 rounded-full bg-green-200/30 blur-3xl" />
+
+          <div className="relative z-10 grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
+            <div ref={certTextRef} className="order-2 lg:order-1">
+              <h3 className="cert-animate text-3xl font-bold leading-tight sm:text-4xl lg:text-5xl">
+                <span className="text-[#7B3FF2]">Get Certified </span>
+                <span className="text-[#0B55B7]">by </span>
+                <span className="text-[#52C24E]">TMC</span>
+              </h3>
+
+              <p
+                className="cert-animate mt-5 max-w-xl text-base font-bold leading-7 tracking-wide sm:text-lg sm:leading-8"
+                style={{ fontFamily: "'Baloo 2', cursive", fontWeight: 700 }}
+              >
+                <span className="text-[#7B3FF2]">Complete your Montessori training </span>
+                <span className="text-[#0B55B7]">and earn a professional certificate </span>
+                <span className="text-[#52C24E]">that strengthens your teaching career </span>
+                <span className="text-[#FF8A00]">and builds lasting confidence.</span>
+              </p>
+
+              <ul className="mt-8 space-y-4">
+                {[
+                  "Internationally inspired Montessori certification",
+                  "Practical skills you can use in real classrooms",
+                  "A credential trusted by educators worldwide",
+                ].map((item) => (
+                  <li key={item} className="cert-animate flex items-start gap-3">
+                    <span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-violet-100 text-[#7B3FF2]">
+                      <BadgeCheck size={16} />
+                    </span>
+                    <span className="font-semibold text-[#0B55B7]">{item}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                href="https://wa.me/966511247864?text=HI%20I%20WANT%20TO%20REGISTER%20TO%20TMC%20COURSE"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cert-animate mt-9 inline-flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-violet-600 to-indigo-600 px-8 py-4 font-semibold text-white shadow-xl transition hover:scale-[1.02] sm:w-auto"
+              >
+                Get Your Certificate
+                <ArrowRight size={18} />
+              </a>
+            </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="order-1 flex justify-center lg:order-2"
+            >
+              <div className="relative">
+                <div className="absolute inset-6 rounded-full bg-gradient-to-br from-violet-300/30 via-yellow-200/25 to-green-300/30 blur-2xl" />
+                <img
+                  src={certificateWoman}
+                  alt="Graduate holding a Montessori certificate"
+                  className="relative z-10 mx-auto h-auto w-full max-w-[340px] object-contain drop-shadow-2xl sm:max-w-[400px]"
+                />
+              </div>
+            </motion.div>
+          </div>
+        </div>
+
    {/* Flexible Online Learning */}
 
 {/* Flexible Online Learning */}
@@ -254,7 +346,7 @@ export default function Courses() {
   whileInView={{ opacity: 1, y: 0 }}
   transition={{ duration: 0.8 }}
   viewport={{ once: true }}
-  className="relative mt-24 overflow-hidden rounded-[42px] bg-gradient-to-br from-violet-50 via-white to-sky-50 p-10 lg:p-14 shadow-[0_25px_80px_rgba(91,33,182,0.08)]"
+  className="relative mt-24 overflow-hidden rounded-[28px] sm:rounded-[42px] bg-gradient-to-br from-violet-50 via-white to-sky-50 p-5 sm:p-10 lg:p-14 shadow-[0_25px_80px_rgba(91,33,182,0.08)]"
 >
   {/* Background Blobs */}
 
@@ -404,13 +496,13 @@ export default function Courses() {
 
         {/* Who Is It For */}
 
-        <div className="relative mt-24 overflow-hidden rounded-[40px] bg-gradient-to-br from-[#F7F3FF] via-[#FFFDF6] to-[#EEF9FF] px-8 py-16">
+        <div className="relative mt-24 overflow-hidden rounded-[28px] sm:rounded-[40px] bg-gradient-to-br from-[#F7F3FF] via-[#FFFDF6] to-[#EEF9FF] px-5 py-12 sm:px-8 sm:py-16">
             <div className="absolute -top-20 -left-20 h-72 w-72 rounded-full bg-violet-200/30 blur-3xl"></div>
 
 <div className="absolute -bottom-20 right-0 h-80 w-80 rounded-full bg-sky-200/30 blur-3xl"></div>
 
 <div className="absolute left-1/2 top-1/2 h-72 w-72 -translate-x-1/2 -translate-y-1/2 rounded-full bg-yellow-200/20 blur-3xl"></div>
-        <h3 className="relative z-10 text-center text-4xl font-bold">
+        <h3 className="relative z-10 text-center text-3xl sm:text-4xl font-bold">
             <span className="text-[#7B3FF2]">Who </span>
             <span className="text-[#0B55B7]">Is It </span>
             <span className="text-[#52C24E]">For?</span>

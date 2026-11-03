@@ -119,7 +119,7 @@ export default function About() {
         <div className="text-center mb-20">
 
 
-          <h2 className="mt-6 text-4xl md:text-5xl font-bold leading-tight">
+          <h2 className="mt-6 text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
 
             <span className="text-[#FF8A00]">The Heart Behind </span>
 
@@ -137,7 +137,10 @@ export default function About() {
 
           </h2>
 
-          <p className="max-w-3xl mx-auto mt-6 text-lg leading-8 font-medium fade-up" style={{ animationDelay: '0.15s' }}>
+          <p
+            className="max-w-3xl mx-auto mt-6 text-base sm:text-lg md:text-xl leading-7 sm:leading-8 font-bold tracking-wide fade-up"
+            style={{ animationDelay: '0.15s', fontFamily: "'Baloo 2', cursive", fontWeight: 700 }}
+          >
             <span className="text-[#7B3FF2]">We are passionate about empowering aspiring and professional educators </span>
             <span className="text-[#0B55B7]">through high-quality Montessori teacher training, </span>
             <span className="text-[#52C24E]">internationally recognized certification programs, </span>
@@ -161,7 +164,10 @@ export default function About() {
               <span className="text-[#52C24E]">brighter childhoods.</span>
             </h3>
 
-            <p className="mt-6 leading-8 font-medium">
+            <p
+              className="mt-6 text-base sm:text-lg md:text-xl leading-7 sm:leading-8 font-bold tracking-wide"
+              style={{ fontFamily: "'Baloo 2', cursive", fontWeight: 700 }}
+            >
               <span className="text-[#7B3FF2]">The Montessori Castle </span>
               <span className="text-[#0B55B7]">is a training institute where we empower teachers, parents, and caregivers </span>
               <span className="text-[#52C24E]">with practical Montessori education, child development knowledge, </span>
@@ -172,16 +178,19 @@ export default function About() {
               <span className="text-[#FF8A00]">and a lifelong love of learning.</span>
             </p>
 
-            <p className="mt-5 leading-8 font-medium">
+            <p
+              className="mt-5 text-base sm:text-lg md:text-xl leading-7 sm:leading-8 font-bold tracking-wide"
+              style={{ fontFamily: "'Baloo 2', cursive", fontWeight: 700 }}
+            >
               <span className="text-[#FF8A00]">What started as a small educational initiative </span>
               <span className="text-[#7B3FF2]">has grown into a trusted learning community </span>
               <span className="text-[#0B55B7]">that provides online courses, workshops, certifications, </span>
               <span className="text-[#52C24E]">and valuable teaching resources for educators around the world.</span>
             </p>
 
-            <div className="mt-8 flex flex-wrap gap-4">
+            <div className="mt-8 flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
 
-              <button className="bg-violet-600 hover:bg-violet-700 transition text-white px-7 py-3 rounded-full font-semibold flex items-center gap-2 shadow-lg">
+              <button className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-violet-600 px-7 py-3 font-semibold text-white shadow-lg transition hover:bg-violet-700 sm:w-auto">
 
                 Learn More
 
@@ -189,7 +198,7 @@ export default function About() {
 
               </button>
 
-              <button className="border-2 border-violet-200 hover:bg-violet-50 transition text-violet-700 px-7 py-3 rounded-full font-semibold">
+              <button className="inline-flex w-full items-center justify-center rounded-full border-2 border-violet-200 px-7 py-3 font-semibold text-violet-700 transition hover:bg-violet-50 sm:w-auto">
                 Our Courses
               </button>
 

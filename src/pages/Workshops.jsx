@@ -90,20 +90,20 @@ export default function Workshops() {
       <div className="absolute left-1/2 top-48 h-80 w-80 -translate-x-1/2 rounded-full bg-violet-200/20 blur-3xl" />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="grid items-center gap-20 lg:grid-cols-2">
+        <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-20">
           {/* LEFT */}
 
           <motion.div
-            initial={{ opacity: 0, x: -60 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: .8 }}
           >
-            <div className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2 shadow-lg">
+            <div className="inline-flex max-w-full items-center gap-2 rounded-full bg-white px-4 py-2 shadow-lg sm:px-5">
 
-              <Sparkles className="text-orange-500" size={18} />
+              <Sparkles className="shrink-0 text-orange-500" size={18} />
 
-              <span className="font-semibold text-[#7B3FF2]">
+              <span className="text-sm font-semibold text-[#7B3FF2] sm:text-base">
                 Interactive Montessori Workshops
               </span>
 
@@ -138,11 +138,11 @@ export default function Workshops() {
 
             </p>
 
-            <div className="mt-10 flex flex-wrap gap-5">
+            <div className="mt-10 flex w-full flex-col gap-4 sm:flex-row sm:flex-wrap sm:gap-5">
 
               <a
                 href="#upcoming"
-                className="flex items-center gap-3 rounded-full bg-violet-600 px-8 py-4 font-semibold text-white shadow-xl transition hover:scale-105"
+                className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-violet-600 px-8 py-4 font-semibold text-white shadow-xl transition hover:scale-105 sm:w-auto"
               >
                 Upcoming Workshops
 
@@ -152,7 +152,7 @@ export default function Workshops() {
 
               <a
                 href="#contact"
-                className="rounded-full border-2 border-violet-300 px-8 py-4 font-semibold text-violet-600 transition hover:bg-violet-50"
+                className="inline-flex w-full items-center justify-center rounded-full border-2 border-violet-300 px-8 py-4 font-semibold text-violet-600 transition hover:bg-violet-50 sm:w-auto"
               >
                 Reserve Your Seat
               </a>
@@ -163,11 +163,11 @@ export default function Workshops() {
           {/* RIGHT */}
 
           <motion.div
-            initial={{ opacity: 0, x: 80 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: .9 }}
-            className="relative"
+            className="relative w-full min-w-0"
           >
             <motion.div
               animate={{
@@ -177,7 +177,7 @@ export default function Workshops() {
                 repeat: Infinity,
                 duration: 5,
               }}
-              className="rounded-[36px] bg-white p-8 shadow-[0_30px_80px_rgba(0,0,0,.12)]"
+              className="w-full rounded-[28px] bg-white p-5 shadow-[0_30px_80px_rgba(0,0,0,.12)] sm:rounded-[36px] sm:p-8"
             >
               <div className="inline-flex rounded-full bg-violet-100 px-4 py-2 font-semibold text-violet-700">
 

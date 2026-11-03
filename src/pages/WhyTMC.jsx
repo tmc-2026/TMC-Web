@@ -75,7 +75,7 @@ const WhyTMC = () => {
 
       <div className="relative z-10 mx-auto max-w-7xl px-6 lg:px-8">
 
-        <div className="grid items-start gap-20 lg:grid-cols-2">
+        <div className="grid items-start gap-10 lg:grid-cols-2 lg:gap-20">
 
           {/* LEFT SIDE */}
 
@@ -240,12 +240,12 @@ TMC
   <motion.div
     initial={{
       opacity: 0,
-      x: 80,
-      scale: .9,
+      y: 40,
+      scale: .96,
     }}
     whileInView={{
       opacity: 1,
-      x: 0,
+      y: 0,
       scale: 1,
     }}
     transition={{
@@ -254,11 +254,12 @@ TMC
     }}
     viewport={{
       once: true,
+      amount: 0.2,
     }}
     whileHover={{
       scale: 1.02,
     }}
-    className="relative overflow-hidden rounded-[30px] border border-orange-100 bg-white p-2 shadow-2xl"
+    className="relative w-full max-w-[320px] overflow-hidden rounded-[30px] border border-orange-100 bg-white p-2 shadow-2xl"
   >
 
     <video
@@ -267,7 +268,7 @@ TMC
       muted
       loop
       playsInline
-     className="h-auto max-h-[500px] w-full max-w-[280px] rounded-[24px] object-cover"
+     className="h-auto max-h-[500px] w-full rounded-[24px] object-cover"
     />
 
   </motion.div>

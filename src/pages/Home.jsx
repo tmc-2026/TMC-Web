@@ -121,10 +121,10 @@ const Home = () => {
                 <span className="text-[#52C24E]">Castle</span>
               </h1>
 
-              <div className="mt-14 flex w-full flex-col gap-4 sm:flex-row sm:flex-wrap sm:items-center sm:justify-start">
+              <div className="mt-10 flex w-full flex-col gap-4 sm:mt-14 sm:flex-row sm:flex-wrap sm:items-center sm:justify-start">
                 <a
                   href="#courses"
-                  className="inline-flex items-center justify-center gap-3 rounded-full bg-violet-600 px-8 py-4 font-semibold text-white shadow-xl transition hover:bg-violet-700"
+                  className="inline-flex w-full items-center justify-center gap-3 rounded-full bg-violet-600 px-8 py-4 font-semibold text-white shadow-xl transition hover:bg-violet-700 sm:w-auto"
                 >
                   Explore Courses
                   <ArrowRight size={20} />
@@ -134,7 +134,7 @@ const Home = () => {
                   href="https://wa.me/966511247864?text=Hey%2C%20I%20want%20to%20talk%20to%20an%20advisor"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-full border-2 border-violet-300 px-8 py-4 text-center font-semibold text-violet-600 transition hover:bg-violet-50"
+                  className="inline-flex w-full items-center justify-center rounded-full border-2 border-violet-300 px-8 py-4 text-center font-semibold text-violet-600 transition hover:bg-violet-50 sm:w-auto"
                 >
                   Talk to an Advisor
                 </a>
@@ -145,7 +145,7 @@ const Home = () => {
 
 {/* RIGHT */}
 
-<div ref={heroRightRef} className="relative hidden lg:flex justify-center">
+<div ref={heroRightRef} className="relative mx-auto flex w-full max-w-[420px] justify-center lg:max-w-none">
 
   {/* Glow */}
 
@@ -153,34 +153,34 @@ const Home = () => {
 
   {/* Image Card */}
 
-  <div className="relative overflow-hidden rounded-[40px] bg-white shadow-2xl p-3">
+  <div className="relative w-full overflow-hidden rounded-[28px] bg-white p-2 shadow-2xl sm:rounded-[40px] sm:p-3">
 
     <img
       src={heroImage}
       alt="Montessori"
-      className="w-[470px] rounded-[30px] object-cover"
+      className="h-auto w-full rounded-[22px] object-cover sm:rounded-[30px] lg:w-[470px]"
     />
 
   </div>
 
   {/* Badge 1 */}
 
-  <div className="float absolute -top-5 -left-6 rounded-2xl bg-white px-5 py-3 shadow-xl">
+  <div className="float absolute -top-3 left-2 rounded-2xl bg-white px-3 py-2 shadow-xl sm:-top-5 sm:-left-6 sm:px-5 sm:py-3">
 
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-2 sm:gap-3">
 
       <GraduationCap
         className="text-violet-600"
-        size={24}
+        size={20}
       />
 
       <div>
 
-        <h4 className="text-[1.1rem] font-bold">
+        <h4 className="text-sm font-bold sm:text-[1.1rem]">
           Certified
         </h4>
 
-        <p className="text-[0.825rem] text-gray-500">
+        <p className="text-[0.7rem] text-gray-500 sm:text-[0.825rem]">
           Courses
         </p>
 
@@ -193,24 +193,24 @@ const Home = () => {
   {/* Badge 2 */}
 
   <div
-    className="float absolute top-10 -right-8 rounded-2xl bg-white px-5 py-3 shadow-xl"
+    className="float absolute top-6 right-1 rounded-2xl bg-white px-3 py-2 shadow-xl sm:top-10 sm:-right-8 sm:px-5 sm:py-3"
     style={{ animationDelay: ".6s" }}
   >
 
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-2 sm:gap-3">
 
       <Users
         className="text-orange-500"
-        size={24}
+        size={20}
       />
 
       <div>
 
-        <h4 className="text-[1.1rem] font-bold">
+        <h4 className="text-sm font-bold sm:text-[1.1rem]">
           2500+
         </h4>
 
-        <p className="text-[0.825rem] text-gray-500">
+        <p className="text-[0.7rem] text-gray-500 sm:text-[0.825rem]">
           Teachers
         </p>
 
@@ -223,24 +223,24 @@ const Home = () => {
   {/* Badge 3 */}
 
   <div
-    className="float absolute bottom-8 -left-8 rounded-2xl bg-white px-5 py-3 shadow-xl"
+    className="float absolute bottom-6 left-1 rounded-2xl bg-white px-3 py-2 shadow-xl sm:bottom-8 sm:-left-8 sm:px-5 sm:py-3"
     style={{ animationDelay: "1.2s" }}
   >
 
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-2 sm:gap-3">
 
       <BookOpen
         className="text-green-600"
-        size={24}
+        size={20}
       />
 
       <div>
 
-        <h4 className="text-[1.1rem] font-bold">
+        <h4 className="text-sm font-bold sm:text-[1.1rem]">
           Practical
         </h4>
 
-        <p className="text-[0.825rem] text-gray-500">
+        <p className="text-[0.7rem] text-gray-500 sm:text-[0.825rem]">
           Learning
         </p>
 
@@ -253,24 +253,24 @@ const Home = () => {
   {/* Badge 4 */}
 
   <div
-    className="float absolute -bottom-6 right-10 rounded-2xl bg-white px-5 py-3 shadow-xl"
+    className="float absolute -bottom-3 right-4 rounded-2xl bg-white px-3 py-2 shadow-xl sm:-bottom-6 sm:right-10 sm:px-5 sm:py-3"
     style={{ animationDelay: "1.8s" }}
   >
 
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-2 sm:gap-3">
 
       <Globe2
         className="text-sky-500"
-        size={24}
+        size={20}
       />
 
       <div>
 
-        <h4 className="text-[1.1rem] font-bold">
+        <h4 className="text-sm font-bold sm:text-[1.1rem]">
           Global
         </h4>
 
-        <p className="text-[0.825rem] text-gray-500">
+        <p className="text-[0.7rem] text-gray-500 sm:text-[0.825rem]">
           Community
         </p>
 
@@ -423,7 +423,8 @@ function TypeWriter() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       onViewportEnter={() => setStarted(true)}
-      className="mt-6 max-w-xl text-lg font-medium leading-8"
+      className="mt-6 max-w-xl text-base sm:text-lg md:text-xl font-bold leading-7 sm:leading-8 tracking-wide"
+      style={{ fontFamily: "'Baloo 2', cursive", fontWeight: 700 }}
     >
       {segments.map((segment, index) => {
         if (remaining <= 0) return null;

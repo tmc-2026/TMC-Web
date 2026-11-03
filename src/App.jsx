@@ -1,4 +1,5 @@
 import Navbar from './components/Navbar'
+import Footer from './components/Footer'
 import WhatsAppFloat from './components/WhatsAppFloat'
 import Home from './pages/Home'
 import About from './pages/About'
@@ -19,6 +20,7 @@ function App() {
         <WhyTMC />
         <Contact />
       </main>
+      <Footer />
       <WhatsAppFloat />
     </div>
   )
