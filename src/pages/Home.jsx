@@ -93,7 +93,7 @@ const Home = () => {
         <div className="absolute top-40 left-0 h-96 w-96 rounded-full bg-yellow-200/60 blur-[140px]" />
         <div className="absolute bottom-20 right-0 h-[500px] w-[500px] rounded-full bg-sky-200/60 blur-[180px]" />
 
-        <div className="absolute inset-0 pointer-events-none">
+        <div className="pointer-events-none absolute inset-0 hidden md:block">
           {[...Array(70)].map((_, i) => (
             <span
               key={i}
