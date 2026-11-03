@@ -79,7 +79,7 @@ const Navbar = () => {
               className="h-12 w-12 shrink-0 object-contain sm:h-16 sm:w-16"
             />
             <h2
-              className="truncate text-[15px] font-semibold leading-tight sm:text-[20px] lg:text-[28px] lg:whitespace-nowrap"
+              className="truncate text-[18px] font-semibold leading-tight sm:text-[20px] lg:text-[28px] lg:whitespace-nowrap"
               style={{ fontFamily: "'Baloo 2', cursive" }}
             >
               <span className="text-[#7B3FF2]">The</span>{" "}

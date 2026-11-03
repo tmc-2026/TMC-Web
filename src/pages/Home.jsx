@@ -113,7 +113,7 @@ const Home = () => {
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
             <div ref={heroLeftRef} className="flex flex-col items-start text-left">
               <h1 className="max-w-xl text-[28px] font-extrabold leading-[1.35] tracking-tight md:text-[34px] lg:text-[38px] headline-animate">
-                <span className="text-[#52C24E]">Making the world a better place.</span>
+                <span className="text-[#52C24E]">Making world a better place.</span>
                 <br />
                 <span className="text-[#FF8A00]">Start your educational journey at </span>
                 <span className="text-[#7B3FF2]">The</span>{" "}
