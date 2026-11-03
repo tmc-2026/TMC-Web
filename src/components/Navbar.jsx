@@ -117,14 +117,14 @@ const Navbar = () => {
           hidden ? "-translate-y-full" : "translate-y-0"
         }`}
       >
-        <div className="mx-auto flex h-[72px] max-w-[1280px] items-center justify-between gap-1.5 px-2.5 sm:gap-3 sm:px-6 lg:px-8">
-          <div className="flex min-w-0 flex-1 items-center gap-1 sm:gap-3">
+        <div className="mx-auto flex h-[72px] max-w-[1280px] items-center justify-between gap-2 px-3 sm:gap-3 sm:px-6 lg:px-8">
+          <div className="flex min-w-0 flex-1 items-center gap-2 sm:gap-3">
             <img
               src={logo}
               alt="TMC Logo"
-              className="h-9 w-9 shrink-0 object-contain sm:h-16 sm:w-16"
+              className="h-12 w-12 shrink-0 object-contain sm:h-16 sm:w-16"
             />
-            <BrandName className="whitespace-nowrap text-[clamp(11px,3.1vw,13px)] font-semibold leading-none tracking-tight sm:text-[20px] lg:text-[28px]" />
+            <BrandName className="whitespace-nowrap text-[15px] font-semibold leading-tight sm:text-[20px] lg:text-[28px]" />
           </div>
 
           <nav className="ml-4 hidden items-center gap-2 xl:gap-6 lg:flex">
@@ -142,8 +142,8 @@ const Navbar = () => {
               ))}
           </nav>
 
-          <div className="flex shrink-0 items-center gap-1 sm:gap-3">
-            <LangToggle />
+          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+            <LangToggle className="hidden lg:inline-flex" />
 
             <a
               href="#contact"
@@ -156,11 +156,11 @@ const Navbar = () => {
             <button
               type="button"
               onClick={() => setMobileMenu(true)}
-              className="inline-flex h-9 w-9 items-center justify-center rounded-xl text-[#7B3FF2] transition hover:bg-violet-50 sm:h-11 sm:w-11 lg:hidden"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-xl text-[#7B3FF2] transition hover:bg-violet-50 lg:hidden"
               aria-label={t("nav.openMenu")}
               aria-expanded={mobileMenu}
             >
-              <Menu size={24} strokeWidth={2.5} />
+              <Menu size={28} strokeWidth={2.5} />
             </button>
           </div>
         </div>
@@ -215,6 +215,11 @@ const Navbar = () => {
               </li>
             ))}
           </ul>
+
+          <div className="mt-6 flex items-center justify-between rounded-2xl bg-violet-50 px-4 py-3 lg:hidden">
+            <span className="text-sm font-semibold text-[#7B3FF2]">EN / ع</span>
+            <LangToggle />
+          </div>
         </nav>
 
         <div className="border-t border-violet-100 px-5 py-6">
