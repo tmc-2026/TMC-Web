@@ -16,7 +16,7 @@ import {
   ArrowRight,
   BadgeCheck,
 } from "lucide-react";
-import certificateWoman from "../assets/certificate-woman.png";
+import certificateWoman from "../assets/certificate-danie-jean.png";
 import { useLanguage, TextSegments } from "../i18n/LanguageContext";
 
 gsap.registerPlugin(ScrollTrigger);
